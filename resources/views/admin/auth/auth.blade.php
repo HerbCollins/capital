@@ -22,7 +22,7 @@
                 <!-- begin login-header -->
                 <div class="login-header">
                     <div class="brand">
-                        <span class="logo"></span> Color Admin
+                        <span class="logo"></span> Capital Plate
                         <small>responsive bootstrap 3 admin template</small>
                     </div>
                     <div class="icon">
