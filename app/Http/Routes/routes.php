@@ -31,7 +31,7 @@ Route::group(['middleware' => ['web']], function () {
         require app_path('Http/Routes/user.php');
     });
 
-    Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::group(['prefix' => 'maker', 'namespace' => 'Admin'], function () {
         require app_path('Http/Routes/admin.php');
     });
 });
