@@ -11,9 +11,9 @@
 |
  */
 
-Route::get('/', ['middleware' => 'auth', function () {
-    return view('index');
-}]);
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/' , 'HomeController@index');
+});
 
 /*
 |--------------------------------------------------------------------------

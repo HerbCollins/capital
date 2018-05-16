@@ -1,28 +1,38 @@
 <!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Project name</a>
+        <div class="row">
+            <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+                <div class="nav-box">
+                    <div class="nav bottom-nav">
+                        <div class="row text-center">
+                            <div class="col-xs-3">
+                                <a href="{{ url('/') }}">
+                                    <span class="icon-nav"><i class="fa fa-fw fa-home"></i></span>
+                                    <span>首页</span>
+                                </a>
+                            </div>
+                            <div class="col-xs-3">
+                                <a href="">
+                                    <span class="icon-nav"><i class="fa fa-fw fa-bitcoin"></i></span>
+                                    <span>全球币</span>
+                                </a>
+                            </div>
+                            <div class="col-xs-3">
+                                <a href="">
+                                    <span class="icon-nav"><i class="fa fa-fw fa-handshake-o"></i></span>
+                                    <span>交易</span>
+                                </a>
+                            </div>
+                            <div class="col-xs-3">
+                                <a href="">
+                                    <span class="icon-nav"><i class="fa fa-fw fa-user-o"></i></span>
+                                    <span>我的</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                @if(!Auth::guard('users')->check())
-                    <li><a href="/user">前台登录</a></li>
-                    <li><a href="/admin">后台登录</a></li>
-                @else
-                    <li><a href="/logout">Logout</a></li>
-                @endif
-            </ul>
-        </div><!--/.nav-collapse -->
+
     </div>
-</nav>
