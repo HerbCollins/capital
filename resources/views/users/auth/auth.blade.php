@@ -13,7 +13,7 @@
         <form action="{{ url('user/login') }}" method="POST" class="margin-bottom-0">
             {{ csrf_field() }}
             <div class="form-group m-b-20">
-                <input type="text" name="email" class="form-control input-lg" placeholder="邮箱地址" value="{{ old('email') }}"/>
+                <input type="text" name="phone" class="form-control input-lg" placeholder="手机号" value="{{ old('phone') }}"/>
             </div>
             <div class="form-group m-b-20">
                 <input type="password" name="password" class="form-control input-lg" placeholder="密码" />

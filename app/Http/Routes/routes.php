@@ -11,9 +11,9 @@
 |
  */
 
-Route::get('/', ['middleware' => 'web', function () {
-    return view('index');
-}]);
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/' , 'HomeController@index');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ Route::group(['middleware' => ['web']], function () {
         require app_path('Http/Routes/user.php');
     });
 
-    Route::group(['prefix' => 'maker', 'namespace' => 'Admin'], function () {
+    Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         require app_path('Http/Routes/admin.php');
     });
 });

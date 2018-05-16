@@ -26,8 +26,8 @@ class UserTableSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'UserName',
-            'email' => 'username@username.com',
+            'name' => 'username',
+            'phone' => '13812345678',
             'password' => 'username',
         ]);
     }

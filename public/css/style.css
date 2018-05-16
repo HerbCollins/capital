@@ -1,0 +1,92 @@
+body{
+    font-size: 1em;
+    height: 100%;
+    padding-bottom:50px;
+}
+
+p{
+    padding:0px;
+    margin:0px;
+}
+
+a , a:hover{
+    text-decoration: none;
+}
+
+img{
+    width:100%;
+}
+
+.p-a{
+    padding:10px;
+}
+
+.p-t-m{
+    padding-top:10px;
+}
+
+.p-l-m{
+    padding-left:10px;
+}
+
+.p-r-m{
+    padding-right:10px;
+}
+
+.p-b-m{
+    padding-bottom:10px;
+}
+
+.m-a{
+    margin:10px;
+}
+
+.m-t-m{
+    margin-top:10px;
+}
+
+.m-l-m{
+    margin-left: 10px;
+}
+
+.m-r-m{
+    margin-right:10px;
+}
+.m-b-m{
+    margin-bottom:10px;
+}
+
+.banner{
+    width:100%;
+}
+
+.home-icons{
+    display: inline-block;
+    padding:10px;
+    font-size: 1.2em;
+}
+
+.panel{
+    border:0px;
+    -webkit-box-shadow:0px 0px 6px #e2e2e2;
+    -moz-box-shadow:0px 0px 6px #e2e2e2;
+    box-shadow:0px 0px 6px #e2e2e2;
+}
+.nav-box{
+    position: relative;
+}
+.bottom-nav{
+    position: fixed;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    padding:8px;
+    background-color: #ffffff;
+    -webkit-box-shadow:0px 0px 6px #e2e2e2;
+    -moz-box-shadow:0px 0px 6px #e2e2e2;
+    box-shadow:0px 0px 6px #e2e2e2;
+}
+.bottom-nav .icon-nav{
+    display: block;
+    font-size:1.2em;
+}

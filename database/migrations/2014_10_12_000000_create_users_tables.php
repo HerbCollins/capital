@@ -30,7 +30,7 @@ class CreateUsersTables extends Migration
             Schema::create($table, function (Blueprint $blueprint) {
                 $blueprint->increments('id');
                 $blueprint->string('name');
-                $blueprint->string('email')->unique();
+                $blueprint->string('email');
                 $blueprint->string('password', 60);
                 $blueprint->rememberToken();
                 $blueprint->timestamps();

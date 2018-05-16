@@ -59,6 +59,11 @@
                         </div>
                     </form>
                 </li>
+                <li>
+                    <a href="{{ url('/') }}" target="_blank" title="进入前台">
+                        <i class="fa fa-fw fa-reply"></i>
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle f-s-14">
                         <i class="fa fa-bell-o"></i>

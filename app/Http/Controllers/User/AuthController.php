@@ -9,7 +9,7 @@ use Validator;
 class AuthController extends Controller
 {
     protected $guard = 'users';
-    protected $redirectTo = 'user';
+    protected $redirectTo = '/';
 
     /**
      * Get a validator for an incoming registration request.
@@ -21,7 +21,7 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'phone' => 'required|min:11|max:11|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -36,7 +36,7 @@ class AuthController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'phone' => $data['phone'],
             'password' => $data['password'],
         ]);
     }
