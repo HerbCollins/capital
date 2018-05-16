@@ -7,13 +7,15 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     </head>
 
-    @include('layouts.frontend.navbar')
-
     <body>
         <div class="container">
-            <div class="row">
-                @include('layouts.flash')
-                @yield('body')
+            @include('layouts.frontend.navbar')
+
+            <div class="container">
+                <div class="row">
+                    @include('layouts.flash')
+                    @yield('body')
+                </div>
             </div>
         </div>
     </body>
