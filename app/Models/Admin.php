@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+
 class Admin extends User
 {
     use EntrustUserTrait;

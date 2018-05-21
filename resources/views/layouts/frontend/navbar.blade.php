@@ -7,25 +7,25 @@
                         <div class="row text-center">
                             <div class="col-xs-3">
                                 <a href="{{ url('/') }}">
-                                    <span class="icon-nav"><i class="fa fa-fw fa-home"></i></span>
+                                    <span class="icon-nav"><i class="fa fa-fw fa-home fa-2x"></i></span>
                                     <span>首页</span>
                                 </a>
                             </div>
                             <div class="col-xs-3">
-                                <a href="">
-                                    <span class="icon-nav"><i class="fa fa-fw fa-bitcoin"></i></span>
+                                <a href="{{ url('coins') }}">
+                                    <span class="icon-nav"><i class="fa fa-fw fa-bitcoin fa-2x"></i></span>
                                     <span>全球币</span>
                                 </a>
                             </div>
                             <div class="col-xs-3">
-                                <a href="">
-                                    <span class="icon-nav"><i class="fa fa-fw fa-handshake-o"></i></span>
+                                <a href="{{ url('transaction') }}">
+                                    <span class="icon-nav"><i class="fa fa-fw fa-handshake-o fa-2x"></i></span>
                                     <span>交易</span>
                                 </a>
                             </div>
                             <div class="col-xs-3">
-                                <a href="">
-                                    <span class="icon-nav"><i class="fa fa-fw fa-user-o"></i></span>
+                                <a href="{{ url('user') }}">
+                                    <span class="icon-nav"><i class="fa fa-fw fa-user-o fa-2x"></i></span>
                                     <span>我的</span>
                                 </a>
                             </div>

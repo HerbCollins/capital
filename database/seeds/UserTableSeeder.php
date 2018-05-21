@@ -29,6 +29,7 @@ class UserTableSeeder extends Seeder
             'name' => 'username',
             'phone' => '13812345678',
             'password' => 'username',
+            'hash' => time() . rand(10,99),
         ]);
     }
 }

@@ -2,17 +2,23 @@
 
 namespace App\Models;
 
+use App\Traits\Admin\ActionButtonTrait;
 use Illuminate\Foundation\Auth\User as AuthUser;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class User extends AuthUser
+class User extends AuthUser implements Transformable
 {
+    use TransformableTrait;
+    use ActionButtonTrait;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name' , 'phone' , 'email', 'password',
+        'name' , 'phone' , 'email', 'password', 'hash' , 'inviter' , 'coin'
     ];
 
     /**
@@ -28,4 +34,5 @@ class User extends AuthUser
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
 }

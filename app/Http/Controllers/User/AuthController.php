@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Auth\AuthController as Controller;
 use App\Models\User;
 use Validator;
+use Illuminate\Support\Facades\Input;
 
 class AuthController extends Controller
 {
@@ -46,8 +47,8 @@ class AuthController extends Controller
         return view('users.auth.auth');
     }
 
-    public function getRegister()
+    public function getRegister($code = null)
     {
-        return view('users.auth.register');
+        return view('users.auth.register' , compact('code'));
     }
 }

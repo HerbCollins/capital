@@ -13,7 +13,7 @@ Route::post('login', ['uses' => 'AuthController@login', 'as' => 'users.auth.logi
 
 Route::get('logout', ['uses' => 'AuthController@logout', 'as' => 'users.auth.logout',]);
 
-Route::get('register', ['uses' => 'AuthController@getRegister', 'as' => 'users.auth.register',]);
+Route::get('register/{code?}', ['uses' => 'AuthController@getRegister', 'as' => 'users.auth.register',]);
 
 Route::post('register', ['uses' => 'AuthController@postRegister', 'as' => 'users.auth.register',]);
 

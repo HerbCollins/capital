@@ -26,15 +26,26 @@ class CreateUsersTables extends Migration
      */
     public function up()
     {
-        $this->eachTable(function ($table) {
-            Schema::create($table, function (Blueprint $blueprint) {
-                $blueprint->increments('id');
-                $blueprint->string('name');
-                $blueprint->string('email');
-                $blueprint->string('password', 60);
-                $blueprint->rememberToken();
-                $blueprint->timestamps();
-            });
+        Schema::create('users', function (Blueprint $blueprint) {
+            $blueprint->increments('id');
+            $blueprint->string('name');
+            $blueprint->string('email')->nullable();
+            $blueprint->integer('coin')->unsigned()->default(0);
+            $blueprint->string('phone' , '11');
+            $blueprint->string('inviter' , '16')->nullable();
+            $blueprint->string('hash' , '16')->index();
+            $blueprint->string('password', 60);
+            $blueprint->rememberToken();
+            $blueprint->timestamps();
+        });
+
+        Schema::create('admins', function (Blueprint $blueprint) {
+            $blueprint->increments('id');
+            $blueprint->string('name');
+            $blueprint->string('email');
+            $blueprint->string('password', 60);
+            $blueprint->rememberToken();
+            $blueprint->timestamps();
         });
     }
 

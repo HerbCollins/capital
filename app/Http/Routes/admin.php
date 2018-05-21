@@ -18,8 +18,26 @@ Route::group(['middleware' => ['auth:admin']], function ($router) {
 
     //角色管理
     $router->get('role/ajaxIndex',['uses'=>'RoleController@ajaxIndex','as'=>'admin.role.ajaxIndex']);
+
     $router->resource('role', 'RoleController');
+
+    $router->resource('users' , 'UserController');
+
+    $router->resource('miners' , 'MinerController');
+
+    $router->resource('userminers' , 'UserMinerController');
+
+    $router->resource('coinprices' , 'PriceController');
+
+    $router->resource('orders' , 'OrderController');
+
+    $router->get('orders/type/{type}' , 'OrderController@lists')->name('admin.orders.type');
+
+    $router->post('coinprices/axis' , 'PriceController@axis')->name('admin.coinprices.axis');
+
 });
+
+
 
 Route::get('login', ['uses' => 'AuthController@index','as' => 'admin.auth.index']);
 Route::post('login', ['uses' => 'AuthController@login','as' => 'admin.auth.login']);
