@@ -78,7 +78,7 @@ return [
     |
      */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'zh-CN',
 
     /*
     |--------------------------------------------------------------------------
@@ -155,6 +155,11 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /*
+         * 自定义 Facade
+         */
+        App\Providers\SettingsServiceProvider::class,
         //Barryvdh\Debugbar\ServiceProvider::class,
 
         /**
@@ -231,6 +236,8 @@ return [
          * laravel-debugbar
          */
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+        'settings' => App\Facades\Settings::class,
     ],
 
 ];

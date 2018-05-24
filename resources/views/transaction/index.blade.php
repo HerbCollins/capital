@@ -8,12 +8,12 @@
                     <div class="col-xs-4">
                         <p><span>当前价</span></p>
                         <span><i class="fa fa-fw fa-yen"></i></span>
-                        <h2 style="display: inline-block;">7.24</h2>
+                        <h2 style="display: inline-block;">{{ $present['price'] }}</h2>
                     </div>
                     <div class="col-xs-8">
                         <p class="m-b-m">
-                            <span >最高价：<i class="fa fa-fw fa-yen"></i> 800.00</span>
-                            <span class="pull-right">最低价：<i class="fa fa-fw fa-yen"></i> 8.00</span>
+                            <span >最高价：<i class="fa fa-fw fa-yen"></i> {{ $max }}</span>
+                            <span class="pull-right">最低价：<i class="fa fa-fw fa-yen"></i> {{ $min }}</span>
                         </p>
                         <p class="m-b-m">
                             涨幅：0.10%

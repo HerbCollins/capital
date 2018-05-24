@@ -13,8 +13,8 @@
                                     <img src="http://tt35.iiio.top/attachment/images/1/2018/04/RhmdRBFdD4v474DZw6MvdkJhxvvk2H.png" class="avatar" alt="">
                                 </div>
                                 <div class="col-xs-7" style="padding:0px;">
-                                    <p class="m-b-m">ID:1011</p>
-                                    <p>昵称：全球总裁</p>
+                                    <p class="m-b-m">ID:{{ $user->hash }}</p>
+                                    <p>昵称：{{ $user->name }}</p>
                                     <p class="m-t-m"><span class="label label-default">全球vip1</span></p>
                                 </div>
                             </div>
@@ -22,8 +22,8 @@
                         <div class="col-xs-6">
                             <div class="row">
                                 <div class="col-xs-8">
-                                    <p class="m-b-m">全球：</p>
-                                    <h4>11422.00</h4>
+                                    <p class="m-b-m">{{ $coin_name }}：</p>
+                                    <h4>{{ sprintf('%.2f' , $user->coin) }}</h4>
                                     <p class="m-t-m">[推荐人：总店]</p>
                                 </div>
                                 <div class="col-xs-4">
