@@ -10,6 +10,7 @@ class CheckPermission{
         $routeName = Route::currentRouteName();
         $permission = '';
         switch ($routeName){
+            case "admin.{$m}.type":
             case "admin.{$m}.index":
             case "admin.{$m}.ajaxIndex": $permission = "{$m}.list";     break;
             case "admin.{$m}.create":
@@ -17,8 +18,10 @@ class CheckPermission{
             case "admin.{$m}.edit":
             case "admin.{$m}.update":    $permission = "{$m}.edit";     break;
             case "admin.{$m}.destroy":   $permission = "{$m}.delete";   break;
+            case "admin.{$m}.axis": $permission = "{$m}.axis" ; break;
             default : break;
         }
+
         if (!$permission){
             abort(500,'系统没有权限，请修改权限验证中间件\\App\\Http\\Middleware\\CheckPermission！');
         }

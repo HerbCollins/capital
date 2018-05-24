@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\MenuRequest;
 use App\Repositories\Eloquent\MenuRepositoryEloquent as MenuRepository;
 use App\Http\Controllers\Controller;
+
 class MenuController extends Controller
 {
     private $menu;

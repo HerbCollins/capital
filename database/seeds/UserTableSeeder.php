@@ -28,7 +28,8 @@ class UserTableSeeder extends Seeder
         User::create([
             'name' => 'username',
             'phone' => '13812345678',
-            'password' => 'username',
+            'password' => '123456',
+            'hash' => time() . rand(10,99),
         ]);
     }
 }

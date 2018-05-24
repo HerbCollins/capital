@@ -8,6 +8,11 @@ use App\Http\Requests;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:users');
+    }
+
     public function index()
     {
         return view('home.index');

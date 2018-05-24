@@ -24,6 +24,9 @@
             <div class="form-group m-b-20">
                 <input type="password" name="password_confirmation" class="form-control input-lg" placeholder="确认密码" />
             </div>
+            <div class="form-group m-b-20">
+                <input type="text" name="inviter" class="form-control input-lg" placeholder="邀请码（可不填）" value="{{ $code }}" />
+            </div>
             <div class="login-buttons">
                 <button type="submit" class="btn btn-success btn-block btn-lg">注 册</button>
             </div>

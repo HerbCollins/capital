@@ -11,9 +11,6 @@
 |
  */
 
-Route::group(['middleware' => ['web']], function () {
-    Route::get('/' , 'HomeController@index');
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +24,12 @@ Route::group(['middleware' => ['web']], function () {
  */
 
 Route::group(['middleware' => ['web']], function () {
+    Route::get('/' , 'HomeController@index');
+
+    Route::get('/coins' , 'CoinController@index');
+
+    Route::get('/transaction' , 'TransactionController@index');
+
     Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
         require app_path('Http/Routes/user.php');
     });

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPhoneToUsersTable extends Migration
+class CreatePricesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,11 @@ class AddPhoneToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('phone' , 11)->unique()->index();
+        Schema::create('prices', function (Blueprint $table) {
+            $table->increments('id');
+            $table->double('price')->unsigned();
+            $table->date('day');
+            $table->timestamps();
         });
     }
 
@@ -24,8 +27,6 @@ class AddPhoneToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('phone');
-        });
+        Schema::drop('prices');
     }
 }

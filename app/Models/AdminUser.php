@@ -7,6 +7,7 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use App\Traits\Admin\ActionButtonTrait;
+
 class AdminUser extends Model implements Transformable
 {
     use TransformableTrait;

@@ -26,6 +26,11 @@ class AuthController extends Controller
         ]);
     }
 
+    public function loginUsername()
+    {
+        return 'email';
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *

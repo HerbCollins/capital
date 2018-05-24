@@ -29,6 +29,12 @@ class PermissionTableSeeder extends Seeder
         $systemManage->display_name = '系统管理';
         $systemManage->description = '系统管理';
         $systemManage->save();
+
+        $adminSystemManage = New Permission();
+        $adminSystemManage->name = "admin.system";
+        $adminSystemManage->display_name = "系统设置";
+        $adminSystemManage->description = "系统设置";
+        $adminSystemManage->save();
     }
 
     /**
@@ -59,6 +65,122 @@ class PermissionTableSeeder extends Seeder
         $menusDelete->display_name = '删除目录';
         $menusDelete->description = '删除目录';
         $menusDelete->save();
+
+        $menusList = New Permission();
+        $menusList->name = 'users.list';
+        $menusList->display_name = '用户列表';
+        $menusList->description = '用户列表';
+        $menusList->save();
+
+        $menusAdd = New Permission();
+        $menusAdd->name = 'users.add';
+        $menusAdd->display_name = '添加用户';
+        $menusAdd->description = '添加用户';
+        $menusAdd->save();
+
+        $menusEdit = New Permission();
+        $menusEdit->name = 'users.edit';
+        $menusEdit->display_name = '修改用户';
+        $menusEdit->description = '修改用户';
+        $menusEdit->save();
+
+        $menusDelete = New Permission();
+        $menusDelete->name = 'users.delete';
+        $menusDelete->display_name = '删除用户';
+        $menusDelete->description = '删除用户';
+        $menusDelete->save();
+
+        $minerList = New Permission();
+        $minerList->name = 'miners.list';
+        $minerList->display_name = '矿机列表';
+        $minerList->description = '矿机列表';
+        $minerList->save();
+
+        $minerAdd = New Permission();
+        $minerAdd->name = 'miners.add';
+        $minerAdd->display_name = '添加矿机';
+        $minerAdd->description = '添加矿机';
+        $minerAdd->save();
+
+        $minerEdit = New Permission();
+        $minerEdit->name = 'miners.edit';
+        $minerEdit->display_name = '修改矿机';
+        $minerEdit->description = '修改矿机';
+        $minerEdit->save();
+
+        $minerDelete = New Permission();
+        $minerDelete->name = 'miners.delete';
+        $minerDelete->display_name = '删除矿机';
+        $minerDelete->description = '删除矿机';
+        $minerDelete->save();
+
+        $userminerList = New Permission();
+        $userminerList->name = 'userminers.list';
+        $userminerList->display_name = '矿机购买记录';
+        $userminerList->description = '矿机购买记录';
+        $userminerList->save();
+
+        $userminerDelete = New Permission();
+        $userminerDelete->name = 'userminers.delete';
+        $userminerDelete->display_name = '删除矿机购买记录';
+        $userminerDelete->description = '删除矿机购买记录';
+        $userminerDelete->save();
+
+        $orderList = New Permission();
+        $orderList->name = 'orders.list';
+        $orderList->display_name = '订单列表';
+        $orderList->description = '订单列表';
+        $orderList->save();
+
+        $orderAdd = New Permission();
+        $orderAdd->name = 'orders.add';
+        $orderAdd->display_name = '增加订单';
+        $orderAdd->description = '增加订单';
+        $orderAdd->save();;
+
+        $orderDelete = New Permission();
+        $orderDelete->name = 'orders.delete';
+        $orderDelete->display_name = '删除订单';
+        $orderDelete->description = '删除订单';
+        $orderDelete->save();
+
+        $orderEdit = New Permission();
+        $orderEdit->name = 'orders.edit';
+        $orderEdit->display_name = '编辑订单';
+        $orderEdit->description = '编辑订单';
+        $orderEdit->save();
+
+        $coinList = New Permission();
+        $coinList->name = "coinprices.list";
+        $coinList->display_name = "价格信息";
+        $coinList->description = '价格信息';
+        $coinList->save();
+
+        $coinAdd = New Permission();
+        $coinAdd->name = "coinprices.add";
+        $coinAdd->display_name = "增加价格";
+        $coinAdd->description = '增加价格';
+        $coinAdd->save();
+
+        $coinAdd = New Permission();
+        $coinAdd->name = "coinprices.axis";
+        $coinAdd->display_name = "价格图表";
+        $coinAdd->description = '价格图表';
+        $coinAdd->save();
+
+        $coinDelete = New Permission();
+        $coinDelete->name = "coinprices.delete";
+        $coinDelete->display_name = "删除价格";
+        $coinDelete->description = '删除价格';
+        $coinDelete->save();
+
+        $cash = New Permission();
+        $cash->name = 'cash.manage';
+        $cash->display_name = '提现与充值';
+        $cash->description = '提现与充值';
+        $cash->save();
+
+
     }
 
     /**

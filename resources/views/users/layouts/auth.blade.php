@@ -11,7 +11,6 @@
     <meta content="" name="author" />
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="{{ asset('asset_admin/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css')}}" rel="stylesheet" />
     <link href="{{ asset('asset_admin/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" />
     <link href="{{ asset('asset_admin/assets/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />
@@ -42,7 +41,6 @@
         <div class="login-header">
             <div class="brand">
                 <span class="logo"></span> Capital Plate
-                <small>responsive bootstrap 3 admin template</small>
             </div>
             <div class="icon">
                 <i class="fa fa-sign-in"></i>
