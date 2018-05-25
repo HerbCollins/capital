@@ -23,7 +23,7 @@
                 <div class="login-header">
                     <div class="brand">
                         <span class="logo"></span> Capital Plate
-                        <small>responsive bootstrap 3 admin template</small>
+                        <small></small>
                     </div>
                     <div class="icon">
                         <i class="fa fa-sign-in"></i>
@@ -56,9 +56,6 @@
                         </div>
                         <div class="login-buttons">
                             <button type="submit" class="btn btn-success btn-block btn-lg">登　录</button>
-                        </div>
-                        <div class="m-t-20 m-b-40 p-b-40">
-                            Not a member yet? Click <a href="register_v3.html" class="text-success">here</a> to register.
                         </div>
                         <hr />
                         <p class="text-center text-inverse">
