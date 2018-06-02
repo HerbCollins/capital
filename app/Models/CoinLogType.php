@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Setting extends Model
+class CoinLogType extends Model
 {
-    protected $table = 'settings';
+    protected $table = 'coin_log_type';
 
     protected $fillable = [
-        'id' , 'key' , 'value'
+        'id' , 'type'
     ];
 }

@@ -3,21 +3,13 @@
 @section('title', 'User Panel')
 
 @section('body')
-    <div class="row font-md">
         <div class="panel" >
                 <div class="panel-body" style="padding-bottom: 0px;">
                     <div class="row">
                         <div class="col-xs-6" style=" border-right:1px solid #eee;">
-                            <div class="row">
-                                <div class="col-xs-5" >
-                                    <img src="http://tt35.iiio.top/attachment/images/1/2018/04/RhmdRBFdD4v474DZw6MvdkJhxvvk2H.png" class="avatar" alt="">
-                                </div>
-                                <div class="col-xs-7" style="padding:0px;">
-                                    <p class="m-b-m">ID:{{ $user->hash }}</p>
-                                    <p>昵称：{{ $user->name }}</p>
-                                    <p class="m-t-m"><span class="label label-default">全球vip1</span></p>
-                                </div>
-                            </div>
+                            <p class="m-b-m">ID:{{ $user->hash }}</p>
+                            <p>昵称：{{ $user->name }}</p>
+                            <p class="m-t-m"><span class="label label-default">全球vip1</span></p>
                         </div>
                         <div class="col-xs-6">
                             <div class="row">
@@ -67,13 +59,13 @@
             <div class="panel-body text-center" >
                 <div class="row">
                     <div class="col-xs-3">
-                        <a href="">
+                        <a href="{{ url('user/myminer') }}">
                             <span style="display: block;" class="m-b-m"><i class="fa fa-fw fa-yen fa-2x"></i></span>
                             <span>我的订单</span>
                         </a>
                     </div>
                     <div class="col-xs-3">
-                        <a href="">
+                        <a href="{{ url('user/myorder') }}">
                             <span style="display: block;" class="m-b-m"><i class="fa fa-fw fa-handshake-o fa-2x"></i></span>
                             <span>交易大厅</span>
                         </a>
@@ -85,10 +77,17 @@
                         </a>
                     </div>
                     <div class="col-xs-3">
-                        <a href="">
-                            <span style="display: block;" class="m-b-m"><i class="fa fa-fw fa-edit fa-2x"></i></span>
-                            <span>全球签到</span>
-                        </a>
+                        @if($is_signed)
+                            <a href="javascript:void(0);" class="text-success">
+                                <span style="display: block;" class="m-b-m"><i class="fa fa-fw fa-check-circle fa-2x"></i></span>
+                                <span>今日已签</span>
+                            </a>
+                        @else
+                            <a href="javascript:sign(this);">
+                                <span style="display: block;" class="m-b-m"><i class="fa fa-fw fa-edit fa-2x"></i></span>
+                                <span>全球签到</span>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -97,11 +96,11 @@
         <div class="panel font-md">
             <div class="panel-body" style="padding-bottom:0px;">
                 <ul class="user-list">
-                    <li><a href="">
+                    <li><a href="{{ url('user/edit') }}">
                             <i class="fa fa-fw fa-star"></i> 我的资料
                             <span class="pull-right"><i class="fa fa-fw fa-chevron-right"></i></span>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="{{ url('user/mybill') }}">
                             <i class="fa fa-fw fa-search"></i> 账单明细
                             <span class="pull-right"><i class="fa fa-fw fa-chevron-right"></i></span>
                         </a></li>
@@ -109,11 +108,11 @@
                             <i class="fa fa-fw fa-yen"></i> 提现明细
                             <span class="pull-right"><i class="fa fa-fw fa-chevron-right"></i></span>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="{{ url('user/inviter') }}">
                             <i class="fa fa-fw fa-user"></i> 会员招募
                             <span class="pull-right"><i class="fa fa-fw fa-chevron-right"></i></span>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="{{ url('user/mygroup') }}">
                             <i class="fa fa-fw fa-users"></i> 我的团队
                             <span class="pull-right"><i class="fa fa-fw fa-chevron-right"></i></span>
                         </a></li>
@@ -126,7 +125,39 @@
                 </ul>
             </div>
         </div>
-    </div>
+@stop
 
+@section('js')
+    <script type="text/javascript">
 
+        function sign(obj) {
+            var _url = "{{ url('user/ajaxsign') }}";
+            var _token = "{{ csrf_token() }}";
+            $.ajax({
+                url:_url,
+                data:{'_token':_token},
+                type:'post',
+                dataType:'json',
+                success:function (rst) {
+                    if(rst.code == 0){
+
+                        _toas =new $.Toast({
+                            icon : '<i class="fa fa-fw fa-check-circle"></i>',
+                            message:'签到成功',
+                            type : 0
+                        });
+                        _toas.success();
+                    }else{
+                        _toas =new $.Toast({
+                            icon : '<i class="fa fa-fw fa-times-circle"></i>',
+                            message:rst.message,
+                            type : 1
+                        });
+
+                        _toas.error();
+                    }
+                }
+            });
+        }
+    </script>
 @stop

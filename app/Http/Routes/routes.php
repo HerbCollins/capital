@@ -28,7 +28,20 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/coins' , 'CoinController@index');
 
+    Route::post('/coins/miner/buyorder' , [
+        'uses' => 'CoinController@buyOrder',
+        'as' => 'users.miner.buyorder'
+    ]);
+
+    Route::post('/coins/miner/payment' , [
+        'uses' => 'CoinController@payment',
+        'as' => 'users.miner.payment'
+    ]);
+
     Route::get('/transaction' , 'TransactionController@index');
+    Route::post('/transaction/ajaxdata' , 'TransactionController@ajaxData');
+    Route::post('/transaction/boughtorder' , 'TransactionController@boughtOrder');
+    Route::post('/transaction/sellorder' , 'TransactionController@sellOrder');
 
     Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
         require app_path('Http/Routes/user.php');

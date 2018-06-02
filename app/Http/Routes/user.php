@@ -5,6 +5,30 @@ Route::group(['middleware' => ['auth:users']], function ($router) {
         'uses' => 'UserController@index',
         'as' => 'users.index',
     ]);
+
+    $router->post('/ajaxsign' , [
+        'uses' => 'SignController@ajaxSign',
+        'as' => 'users.sign'
+    ]);
+
+
+    $router->get('/edit' , [
+        'uses' => 'UserController@edit',
+        'as' => 'users.edit'
+    ]);
+
+    $router->get('myorder', ['uses' => 'UserController@myorder', 'as' => 'users.auth.myorder']);
+    $router->get('sendsell','UserController@sendsell');
+    $router->get('getsell','UserController@getsell');
+    $router->get('sendbought','UserController@sendbought');
+    $router->get('getbought','UserController@getbought');
+
+
+    $router->get('inviter', ['uses' => 'UserController@inviter', 'as' => 'users.auth.inviter']);
+    $router->get('mygroup', ['uses' => 'UserController@mygroup', 'as' => 'users.auth.mygroup']);
+    $router->get('mybill', ['uses' => 'UserController@mybill', 'as' => 'users.auth.mybill']);
+    $router->get('myminer', ['uses' => 'UserController@myminer', 'as' => 'users.auth.myminer']);
+
 });
 
 Route::get('login', ['uses' => 'AuthController@index', 'as' => 'users.auth.index',]);

@@ -1,5 +1,5 @@
 body{
-    font-size: 1em;
+    font-size: 1.1em;
     height: 100%;
     padding-bottom:50px;
 }
@@ -17,6 +17,13 @@ a , a:hover{
 img{
     width:100%;
 }
+.text-gray , a.text-gray{
+    color: #999999;
+}
+
+.container{
+    padding:0px;
+}
 
 .font-md{
     font-size: 1.2em;
@@ -24,6 +31,13 @@ img{
 
 .bg-dark{
     background-color: #f2f2f2;
+}
+
+.no-padding{
+    padding:0px;
+}
+.no-margin{
+    margin:0px;
 }
 
 .p-a{
@@ -84,6 +98,21 @@ img{
     width:100%;
 }
 
+.child-page{
+    padding:0px;
+}
+
+.child-page .panel{
+    border:0px;
+    -webkit-box-shadow:  0px 0px 4px #f2f2f2;
+    -moz-box-shadow: 0px 0px 4px #f2f2f2;
+    box-shadow:  0px 0px 4px #f2f2f2;
+}
+.child-page .panel-heading{
+    background-color: #f2f2f2;
+
+}
+
 .home-icons{
     display: inline-block;
     padding:0px 10px 10px;
@@ -124,10 +153,6 @@ img{
     font-size:1.2em;
 }
 
-.btn{
-    padding:2px;
-    font-size: 1em;
-}
 
 ul.user-list{
     margin:0px;
@@ -135,14 +160,51 @@ ul.user-list{
     list-style: none;
 }
 
-ul.user-list li a{
+ul.user-list li a , ul.user-list li .span-li{
     display: block;
     padding:15px 0px;
     border-bottom:1px solid #f2f2f2;
 }
-ul.user-list li:first-child a{
+ul.user-list li .span-li{
+    padding:5px 0px;
+}
+ul.user-list li:first-child a , ul.user-list li:first-child .span-li{
     padding-top:0px;
 }
-ul.user-list li:last-child a{
+ul.user-list li:last-child a , ul.user-list li:last-child .span-li{
     border:0px;
+}
+ul.user-list li .span-li label{
+    line-height:35px;
+}
+
+.no-border-form{
+    border:0px;
+    -webkit-box-shadow:     none;
+    -moz-box-shadow:     none;
+    box-shadow:     none;
+}
+
+input.no-border-form:focus{
+    outline: none;
+    border:0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow:  none;
+    box-shadow: none;
+}
+.nav-tabs{
+    border-bottom:0px;
+}
+.nav-tabs > li{
+    width:50%;
+    text-align: center;
+}
+
+.nav-tabs > li > a{
+    border-bottom: 1px solid transparent;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+    border:0px;
+    border-bottom: 1px solid  #999;
 }

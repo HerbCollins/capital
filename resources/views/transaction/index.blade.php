@@ -1,7 +1,6 @@
 @extends('layouts.frontend.master')
 
 @section('body')
-    <div class="row p-m">
         <div class="panel">
             <div class="panel-body">
                 <div class="row">
@@ -31,10 +30,10 @@
 
         <div class="panel ">
             <div class="panel-heading font-md">
-                全球币
+                {{ $coin_name }}
             </div>
             <div class="panel-body">
-
+                <div id="contain" style="height: 360px;"></div>
             </div>
         </div>
 
@@ -47,8 +46,38 @@
             </div>
             <div class="panel-body">
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="home">...</div>
-                    <div role="tabpanel" class="tab-pane" id="profile">...</div>
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <p>可用{{ $coin_name }}：{{ $user->coin }}</p>
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <input type="number" class="form-control" name="number" placeholder="请输入购买数量">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <input type="number" class="form-control" name="price" placeholder="请输入求购单价">
+                                    </div>
+                                </div>
+                                <div class="m-t-m text-center">
+                                    <button type="submit" class="btn btn-success">确认求购</button>
+                                </div>
+                            </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile">
+                        <p>可用{{ $coin_name }}：{{ $user->coin }}</p>
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <input type="number" class="form-control" name="number" placeholder="请输入卖出数量">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <input type="number" class="form-control" name="price" placeholder="请输入卖出单价">
+                                    </div>
+                                </div>
+                                <div class="m-t-m text-center">
+                                    <button type="submit" class="btn btn-success">确认卖出</button>
+                                </div>
+                            </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,10 +92,178 @@
             </div>
             <div class="panel-body">
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="wantbuy">...</div>
-                    <div role="tabpanel" class="tab-pane" id="wantsell">...</div>
+                    <div role="tabpanel" class="tab-pane active" id="wantbuy" data-page="0">
+                        <div class="orders"></div>
+                        <div class="loading text-center fade" data-loading="wantbuy">
+                            <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                        </div>
+                        <div class="text-center p-a-m fade" data-loadmore="wantbuy">
+                            <a href="javascript:loadmoreWantBuy();"  class="text-gray">加载更多</a>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="wantsell" data-page="0">
+                        <div class="orders"></div>
+                        <div class="loading text-center fade" data-loading="wantsell">
+                            <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                        </div>
+                        <div class="text-center p-a-m fade" data-loadmore="wantsell">
+                            <a href="javascript:loadmoreWantBuy();"  class="text-gray">加载更多</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+@stop
+
+
+@section('js')
+    <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.js"></script>
+    <script type="text/javascript">
+
+        loadmoreWantBuy();
+        loadmoreWantSell();
+
+        function loadmoreWantBuy() {
+            var _page = parseInt($("#wantbuy").data('page')) + 1;
+            $('[data-loading="wantbuy"]').removeClass('fade');
+            $.ajax({
+                url:"{{ url('/transaction/boughtorder') }}",
+                type:"post",
+                dataType:"json",
+                data:{'_token' : "{{ csrf_token() }}" , 'page':_page},
+                success:function (rst) {
+                    console.log(rst)
+                    if(rst.code == 0){
+                        $('[data-loading="wantbuy"]').addClass('fade');
+                        var _div = '';
+                        $.each(rst.data.orders , function (i,k) {
+                            _div += '<div class="panel">\n' +
+                                '                            <div class="panel-body">\n' +
+                                '                                <div class="row">\n' +
+                                '                                    <div class="col-xs-4">'+ k.user.name +'</div>\n' +
+                                '                                    <div class="col-xs-4 text-center"><small>{{ $coin_name }}数量</small><p>'+ k.coins +'</p></div>\n' +
+                                '                                    <div class="col-xs-4 text-right"><small>单价</small><p>'+ k.price +'</p></div>\n' +
+                                '                                </div>\n' +
+                                '                                <div class="row p-t-m">\n' +
+                                '                                    <div class="col-xs-6 text-left"><i class="fa fa-fw fa-yen"></i>'+ (k.price * (k.coins*100) / 100).toFixed(2) +'</div>\n' +
+                                '                                    <div class="col-xs-6 text-right"><button type="button" class="btn btn-primary btn-sm">卖出</button></div>\n' +
+                                '                                </div>\n' +
+                                '                            </div>\n' +
+                                '                        </div>';
+                        })
+
+                        $('#wantbuy>.orders').append(_div);
+                        if(!rst.data.is_over){
+                            $('[data-loadmore="wantbuy"]').removeClass('fade');
+                            $("#wantbuy").data('page' , _page);
+                        }else{
+
+                            $('[data-loadmore="wantbuy"]').addClass('fade');
+                        }
+                    }
+                },
+                error:function (e) {
+                    console.log(e);
+                }
+            });
+
+            return false;
+        }
+
+        function loadmoreWantSell() {
+            var _page = parseInt($("#wantsell").data('page')) + 1;
+            $('[data-loading="wantsell"]').removeClass('fade');
+            $.ajax({
+                url:"{{ url('/transaction/sellorder') }}",
+                type:"post",
+                dataType:"json",
+                data:{'_token' : "{{ csrf_token() }}" , 'page':_page},
+                success:function (rst) {
+                    console.log(rst)
+                    if(rst.code == 0){
+                        $('[data-loading="wantsell"]').addClass('fade');
+                        var _div= '';
+                        $.each(rst.data.orders , function (i,k) {
+
+                            _div += '<div class="panel"><div class="panel-body"><div class="row"><div class="col-xs-4">'+ k.user.name +'</div><div class="col-xs-4"><small>{{ $coin_name }}数量</small><p>'+ k.coins +'</p></div>';
+                                _div += '<div class="col-xs-4 text-right"><small>单价</small><p>'+ k.price +'</p></div></div>';
+                                _div += '<div class="row p-t-m"><div class="col-xs-6 text-left"><i class="fa fa-fw fa-yen"></i>'+ (k.price * (k.coins*100) / 100).toFixed(2) +'</div>';
+                                _div += '<div class="col-xs-6 text-right"><button type="button" class="btn btn-info btn-sm">买入</button></div></div></div></div>';
+
+                        })
+
+                        $('#wantsell>.orders').append(_div);
+                        if(!rst.data.is_over){
+                            $('[data-loadmore="wantsell"]').removeClass('fade');
+                            $("#wantsell").data('page' , _page);
+                        }else{
+                            $('[data-loadmore="wantsell"]').addClass('fade');
+                        }
+                    }
+                },
+                error:function (e) {
+                    console.log(e);
+                }
+            });
+
+            return false;
+        }
+
+        function getData()
+        {
+            var prices = [];   // 设置两个变量用来存变量
+            var times = [];
+            $.post("{{ url('/transaction/ajaxdata') }}", {
+                "_token": "{{ csrf_token() }}"
+            }, function(data) {
+                $.each(data, function(i, item) {
+                    prices.push(item.price);
+                    times.push(item.day);
+                });
+
+                chart(prices , times);
+            });
+        }
+
+
+        function chart( prices , times) {
+            var myChart = echarts.init(document.getElementById("contain"));
+
+            option = {
+                title: {
+                    text: '近5天价格趋势'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: times
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name:'价格',
+                        type:'line',
+                        itemStyle: {
+                            normal: {
+                                lineStyle:{
+                                    color:'#5cb85c',
+                                    width:3
+                                },
+                                label:{
+                                    show:true,
+                                    color:'#000000'
+                                }
+                            }
+                        },
+                        data: prices
+                    }
+                ]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+
+        getData();
+    </script>
 @stop

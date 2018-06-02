@@ -181,6 +181,11 @@ return [
          * laravel-debugbar
          */
         Barryvdh\Debugbar\ServiceProvider::class,
+
+        /**
+         * Qrcode
+         */
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class
     ],
 
     /*
@@ -231,6 +236,11 @@ return [
          * RBAC
          */
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+
+        /**
+         * Qrcode
+         */
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
         /**
          * laravel-debugbar

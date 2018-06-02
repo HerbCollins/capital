@@ -18,5 +18,9 @@ class Miner extends Model implements Transformable
         'id' , 'title' , 'img' , 'price' , 'max' , 'day_max' , 'exist_max' , 'income' , 'timelong' , 'cycle'
     ];
 
+    public function user()
+    {
+        $this->belongsToMany(User::class , 'user_miners' );
+    }
 
 }

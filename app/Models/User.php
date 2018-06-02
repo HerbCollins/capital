@@ -35,4 +35,18 @@ class User extends AuthUser implements Transformable
         $this->attributes['password'] = bcrypt($value);
     }
 
+    public function miner()
+    {
+        return $this->belongsToMany(Miner::class , 'user_miners');
+    }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function cointype()
+    {
+        return $this->hasMany(CoinLog::class);
+    }
 }
