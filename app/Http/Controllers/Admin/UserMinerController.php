@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\UserMiner;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,6 +19,7 @@ class UserMinerController extends Controller
 
     public function index()
     {
-        return view('admin.userminers.index');
+        $userminers = UserMiner::orderBy('created_at' , 'desc')->with('miner')->paginate(20);
+        return view('admin.userminers.index' ,compact('userminers'));
     }
 }

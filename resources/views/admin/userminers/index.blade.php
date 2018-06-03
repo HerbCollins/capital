@@ -46,22 +46,22 @@
                                 <th style="width: 8%;">收益周期</th>
                                 <th style="width: 8%;">生产</th>
                                 <th style="width: 10%;">订单状态</th>
-                                <th style="width: 10%;">操作</th>
+
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($userminers as $userminer)
-                                <tr id="{{ $userminer['id'] }}">
-                                    <td>{{ $userminer['name'] }}</td>
-                                    <td>{{ $userminer['title'] }}</td>
-                                    <td>{{ $userminer['number'] }}</td>
-                                    <td>{{ $userminer['price'] }}</td>
-                                    <td>{{ $userminer['income'] }}</td>
-                                    <td>{{ $userminer['timelong'] }}</td>
-                                    <td>{{ $userminer['cycle'] }}</td>
-                                    <td>{{ $userminer['cycled'] * $userminer['income'] }} / {{ $userminer['timelong'] * $userminer['income'] }}</td>
-                                    <td>{{ $userminer['status'] }}</td>
-                                    <td>{!! $userminer['button'] !!}</td>
+                                <tr id="{{ $userminer->id }}">
+                                    <td>{{ $userminer->user->name }}</td>
+                                    <td>{{ $userminer->miner->title }}</td>
+                                    <td>{{ $userminer->number }}</td>
+                                    <td>{{ $userminer->miner->price * $userminer->number }}</td>
+                                    <td>{{ $userminer->miner->income }}</td>
+                                    <td>{{ $userminer->miner->timelong }}</td>
+                                    <td>{{ $userminer->miner->cycle }}</td>
+                                    <td>{{ $userminer->finished * $userminer->miner->income }} / {{ $userminer->miner->cycle * $userminer->miner->income }}</td>
+                                    <td>{{ $userminer->status }}</td>
+
                                 </tr>
                             @endforeach
                             </tbody>

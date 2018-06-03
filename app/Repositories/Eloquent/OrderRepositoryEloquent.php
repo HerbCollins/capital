@@ -54,10 +54,10 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepositoryI
 
     public function findWithPaginate(array $where , $columns = ["*"])
     {
-        $list = $this->where($where)->paginate(self::PAGE_COUNT,$columns);
+        $list = Order::where($where)->select($columns)->paginate(self::PAGE_COUNT);
 
-        foreach ($list as $key => $value) {
-            $list[$key]['button'] = $this->model->getActionButtons('orders',$value['id']);
+        foreach ($list as $key => &$value) {
+            $value->button = $this->model->getActionButtons('orders',$value['id']);
         }
         return $list;
     }
