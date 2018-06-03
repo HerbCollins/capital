@@ -42,6 +42,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/transaction/ajaxdata' , 'TransactionController@ajaxData');
     Route::post('/transaction/boughtorder' , 'TransactionController@boughtOrder');
     Route::post('/transaction/sellorder' , 'TransactionController@sellOrder');
+    Route::post('/transaction/wantsell' , 'TransactionController@wantsell');
+    Route::post('/transaction/wantbuy' , 'TransactionController@wantbuy');
+    Route::post('/transaction/buyinto' , 'TransactionController@buyinto');
+    Route::post('/transaction/sellout' , 'TransactionController@sellout');
 
     Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
         require app_path('Http/Routes/user.php');

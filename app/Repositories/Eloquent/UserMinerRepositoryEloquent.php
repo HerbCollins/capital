@@ -10,6 +10,7 @@
 namespace App\Repositories\Eloquent;
 
 
+use App\Models\CoinLog;
 use App\Models\Miner;
 use App\Models\User;
 use App\Models\UserMiner;
@@ -69,6 +70,14 @@ class UserMinerRepositoryEloquent
             $userMiner->number = $number;
             $userMiner->order_no = $order_no;
             $userMiner->save();
+
+
+            $coin_log = new CoinLog();
+            $coin_log->coin = $payment;
+            $coin_log->user_id = $user_id;
+            $coin_log->type =1;
+            $coin_log->save();
+
         }else{
             throw new \Exception('未找到相关矿机' , 10000);
         }

@@ -1,5 +1,9 @@
 @extends('layouts.frontend.children')
 
+@section('link')
+{{ url('coins') }}
+@stop
+
 @section('page-name' , '订单详情')
 
 @section('child-body')
@@ -160,9 +164,23 @@
                 url:_url,
                 success:function (rst) {
                     if(rst.code == 0){
-                        console.log(rst.message);
+                        _toas =new $.Toast({
+                            icon : '<i class="fa fa-check-circle fa-fw"></i>',
+                            message:"购买成功",
+                            type : 0
+                        });
+                        _toas.success();
+
+                        setTimeout(function () {
+                            window.location.href = "{{ url('user/myminer') }}"
+                        } , 2000);
                     }else{
-                        console.log(rst.message);
+                        _toas =new $.Toast({
+                            icon : '<i class="fa fa-times-circle fa-fw"></i>',
+                            message:rst.message,
+                            type : 0
+                        });
+                        _toas.error();
                     }
                 }
             })

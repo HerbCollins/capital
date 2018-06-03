@@ -16,6 +16,11 @@ Route::group(['middleware' => ['auth:users']], function ($router) {
         'uses' => 'UserController@edit',
         'as' => 'users.edit'
     ]);
+    $router->post('/update' , [
+        'uses' => 'UserController@update',
+        'as' => 'users.update'
+    ]);
+
 
     $router->get('myorder', ['uses' => 'UserController@myorder', 'as' => 'users.auth.myorder']);
     $router->get('sendsell','UserController@sendsell');
@@ -28,6 +33,18 @@ Route::group(['middleware' => ['auth:users']], function ($router) {
     $router->get('mygroup', ['uses' => 'UserController@mygroup', 'as' => 'users.auth.mygroup']);
     $router->get('mybill', ['uses' => 'UserController@mybill', 'as' => 'users.auth.mybill']);
     $router->get('myminer', ['uses' => 'UserController@myminer', 'as' => 'users.auth.myminer']);
+    $router->get('mycash', ['uses' => 'UserController@mycash', 'as' => 'users.auth.mycash']);
+
+
+    $router->get('withdraw' , ['uses' => 'UserController@withdraw' , 'as' => 'users.auth.withdraw']);
+    $router->post('withdraw_result' , ['uses' => 'UserController@withdrawresult' , 'as' => 'users.auth.withdraw_result']);
+    $router->get('recharge' , ['uses' => 'UserController@recharge' , 'as' => 'users.auth.recharge']);
+    $router->post('ajaxrecharge' , ['uses' => 'UserController@ajaxrecharge' , 'as' => 'users.auth.ajaxrecharge']);
+
+    $router->get('reset' , ['uses' => 'UserController@reset' , 'as' => 'users.auth.reset']);
+    $router->post('ajaxreset' , ['uses' => 'UserController@ajaxreset' , 'as' => 'users.auth.ajaxreset']);
+    $router->get('payment' , ['uses' => 'UserController@payment' , 'as' => 'users.auth.payment']);
+    $router->post('ajaxpayment' , ['uses' => 'UserController@ajaxpayment' , 'as' => 'users.auth.ajaxpayment']);
 
 });
 

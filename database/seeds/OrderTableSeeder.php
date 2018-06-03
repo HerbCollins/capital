@@ -18,13 +18,13 @@ class OrderTableSeeder extends Seeder
 
         for ($i = 0 ; $i < self::GENERATE_NUMBER ; $i++)
         {
-            $hash_no = date('ymdHi').rand(100000,999999);
+            $hash_no = generateOrderId();
             $order = new Order();
             $order->hash_no = $hash_no;
             $order->user_id = $user_ids[array_rand($user_ids , 1)];
-            $order->coins = rand(100 , 999);
+            $order->coins = rand(10 , 100);
             $order->price = rand(100 , 999) / 100;
-            $order->type = rand(1,4);
+            $order->type = rand(1,2);
             $order->status = rand(1,3);
             $order->save();
         }

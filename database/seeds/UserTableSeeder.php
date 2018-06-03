@@ -32,6 +32,7 @@ class UserTableSeeder extends Seeder
             'password' => '123456',
             'coin' => 1000,
             'hash' => $hash,
+            'rmb' => mt_rand(100 , 200)
         ]);
 
         $users = factory(User::class)->times(10)->make()->each(function ($user , $index) use ($hash){
@@ -39,6 +40,7 @@ class UserTableSeeder extends Seeder
             $user->coin = mt_rand(100 , 1000);
             $user->inviter = $hash;
             $user->hash = generateOrderId();
+            $user->rmb = mt_rand(100,200);
         });
 
         $user_array = $users->makeVisible(['password', 'remember_token'])->toArray();

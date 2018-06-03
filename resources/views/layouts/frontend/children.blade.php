@@ -16,10 +16,21 @@
     <div class="font-md">
         <div class="panel">
             <div class="panel-body text-center">
-                <a href="{{ url()->previous() }}" class="pull-left">
-                    <i class="fa fa-fw fa-arrow-left"></i>
-                </a>
-                <span><b>@yield('page-name')</b></span>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <a href="@yield('link')" class="pull-left">
+                            <i class="fa fa-fw fa-arrow-left"></i>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                        <span><b>@yield('page-name')</b></span>
+                    </div>
+                    <div class="col-xs-4 text-right">
+                        @yield('top-right')
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>

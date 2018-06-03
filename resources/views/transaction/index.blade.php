@@ -15,13 +15,13 @@
                             <span class="pull-right">最低价：<i class="fa fa-fw fa-yen"></i> {{ $min }}</span>
                         </p>
                         <p class="m-b-m">
-                            涨幅：0.10%
+                            涨幅：{{ $increase * 100 }}%
                         </p>
                         <p class="m-b-m">
-                            当前求购订单量：1
+                            当前求购订单量：{{ $bought }}
                         </p>
                         <p class="m-b-m">
-                            当前出售订单量：1
+                            当前出售订单量：{{ $sell }}
                         </p>
                     </div>
                 </div>
@@ -48,7 +48,8 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="home">
                         <p>可用{{ $coin_name }}：{{ $user->coin }}</p>
-                            <form action="">
+                            <form action="{{ url('transaction/wantbuy') }}" method="post">
+                                {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <input type="number" class="form-control" name="number" placeholder="请输入购买数量">
@@ -64,7 +65,8 @@
                     </div>
                     <div role="tabpanel" class="tab-pane" id="profile">
                         <p>可用{{ $coin_name }}：{{ $user->coin }}</p>
-                            <form action="">
+                            <form action="{{ url('transaction/wantsell') }}" method="post">
+                                {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <input type="number" class="form-control" name="number" placeholder="请输入卖出数量">
@@ -107,9 +109,34 @@
                             <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
                         </div>
                         <div class="text-center p-a-m fade" data-loadmore="wantsell">
-                            <a href="javascript:loadmoreWantBuy();"  class="text-gray">加载更多</a>
+                            <a href="javascript:loadmoreWantSell();"  class="text-gray">加载更多</a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">支付密码</h4>
+                    </div>
+                    <form action="" id="modal_form" method="post">
+                        {{ csrf_field() }}
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="payment_password" placeholder="请输入支付密码">
+                                <input type="hidden" name="order_id" id="order_id">
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary">确定</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -146,7 +173,7 @@
                                 '                                </div>\n' +
                                 '                                <div class="row p-t-m">\n' +
                                 '                                    <div class="col-xs-6 text-left"><i class="fa fa-fw fa-yen"></i>'+ (k.price * (k.coins*100) / 100).toFixed(2) +'</div>\n' +
-                                '                                    <div class="col-xs-6 text-right"><button type="button" class="btn btn-primary btn-sm">卖出</button></div>\n' +
+                                '                                    <div class="col-xs-6 text-right"><button type="button" onclick="sell('+ k.id + ')" class="btn btn-primary btn-sm">卖出</button></div>\n' +
                                 '                                </div>\n' +
                                 '                            </div>\n' +
                                 '                        </div>';
@@ -179,7 +206,6 @@
                 dataType:"json",
                 data:{'_token' : "{{ csrf_token() }}" , 'page':_page},
                 success:function (rst) {
-                    console.log(rst)
                     if(rst.code == 0){
                         $('[data-loading="wantsell"]').addClass('fade');
                         var _div= '';
@@ -188,7 +214,7 @@
                             _div += '<div class="panel"><div class="panel-body"><div class="row"><div class="col-xs-4">'+ k.user.name +'</div><div class="col-xs-4"><small>{{ $coin_name }}数量</small><p>'+ k.coins +'</p></div>';
                                 _div += '<div class="col-xs-4 text-right"><small>单价</small><p>'+ k.price +'</p></div></div>';
                                 _div += '<div class="row p-t-m"><div class="col-xs-6 text-left"><i class="fa fa-fw fa-yen"></i>'+ (k.price * (k.coins*100) / 100).toFixed(2) +'</div>';
-                                _div += '<div class="col-xs-6 text-right"><button type="button" class="btn btn-info btn-sm">买入</button></div></div></div></div>';
+                                _div += '<div class="col-xs-6 text-right"><button type="button" onclick="buy('+ k.id + ')" class="btn btn-info btn-sm">买入</button></div></div></div></div>';
 
                         })
 
@@ -265,5 +291,68 @@
         }
 
         getData();
+
+        function sell(_order) {
+            $("input#order_id").val(_order);
+            $("form#modal_form").attr('action' , "{{ url('transaction/sellout') }}")
+            $('#modal').modal({
+                show:true
+            });
+        }
+
+        function buy(_order) {
+            $("input#order_id").val(_order);
+            $("form#modal_form").attr('action' , "{{ url('transaction/buyinto') }}")
+            $('#modal').modal({
+                show:true
+            });
+        }
+
+        function wantsell() {
+            $("form#modal_form").attr('action' , "{{ url('transaction/wantsell') }}")
+            $('#modal').modal({
+                show:true
+            });
+        }
+
+        function wantbuy() {
+            $("form#modal_form").attr('action' , "{{ url('transaction/wantbuy') }}")
+            $('#modal').modal({
+                show:true
+            });
+        }
+
+        $("form").submit(function () {
+            var _data = $(this).serialize();
+            var _url = $(this).attr('action');
+            var _method = $(this).attr('method');
+            
+            $.ajax({
+                data:_data,
+                url:_url,
+                type:_method,
+                dataType:"json",
+                success:function (rst) {
+                    if(rst.code == 0){
+                        _toas =new $.Toast({
+                            icon : '<i class="fa fa-check-circle fa-fw"></i>',
+                            message:rst.message,
+                            type : 0
+                        });
+                        _toas.success();
+                    }else{
+                        _toas =new $.Toast({
+                            icon : '<i class="fa fa-times-circle fa-fw"></i>',
+                            message:rst.message,
+                            type : 1
+                        });
+                        _toas.error();
+                    }
+                }
+            });
+
+            return false;
+        });
+
     </script>
 @stop

@@ -1,5 +1,9 @@
 @extends('layouts.frontend.children')
 
+@section('link')
+    {{ url()->previous() }}
+@stop
+
 @section('page-name' , '我的团队')
 
 @section('child-body')
@@ -10,7 +14,6 @@
                     <li class="list-group-item">{{ $user->name }}</li>
                 @endforeach
             </ul>
-
         </div>
     </div>
 @stop

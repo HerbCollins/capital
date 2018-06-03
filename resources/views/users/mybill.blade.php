@@ -1,5 +1,9 @@
 @extends('layouts.frontend.children')
 
+@section('link')
+    {{ url()->previous() }}
+@stop
+
 @section('page-name' , '账单明细')
 
 @section('child-body')

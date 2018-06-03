@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration
+class CreateCashsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,13 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('cashs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('hash_no' , 16)->unique()->index();
             $table->integer('user_id')->unsigned()->index();
-            $table->integer('coins')->unsigned()->default(0);
-            $table->double('price')->unsigned()->default(0);
-            $table->enum('type' , ["1","2"])->default("1");
-            $table->enum('status' , ["1","2","3"])->default("1");
+            $table->string('cash_no')->unique()->index();
+            $table->decimal('rmb',10,2);
+            $table->enum('type' , ['recharge' , 'withdraw' , 'buycoin' , 'sellcoin'])->default('recharge');
+            $table->enum('status' , ['dealing' , 'finished' , 'withdraw'])->default('dealing');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('orders');
+        Schema::drop('cashs');
     }
 }

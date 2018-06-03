@@ -1,5 +1,9 @@
 @extends('layouts.frontend.children')
 
+@section('link')
+    {{ url('user') }}
+@stop
+
 @section('page-name' , '我的订单')
 
 @section('child-body')

@@ -14,42 +14,30 @@
                         <div class="col-xs-6">
                             <div class="row">
                                 <div class="col-xs-8">
-                                    <p class="m-b-m">{{ $coin_name }}：</p>
-                                    <h4>{{ sprintf('%.2f' , $user->coin) }}</h4>
+                                    <p class="m-b-m">{{ $coin_name }}：{{ sprintf('%.2f' , $user->coin) }}</p>
+                                    <p class="m-b-m">RMB：{{ sprintf('%.2f' , $user->rmb) }}</p>
                                     <p class="m-t-m">[推荐人：总店]</p>
                                 </div>
                                 <div class="col-xs-4">
-                                    <p class="m-b-l"><a href="" class="label label-info">提现</a></p>
-                                    <p class="m-t-l"><a href="" class="label label-primary">充值</a></p>
+                                    <p class="m-b-l"><a href="{{ url('user/withdraw') }}" class="label label-info">提现</a></p>
+                                    <p class="m-t-l"><a href="{{ url('user/recharge') }}" class="label label-primary">充值</a></p>
                                 </div>
                             </div>
 
                         </div>
                     </div>
                     <div class="row text-center m-t-l bg-dark p-a">
-                        <div class="col-xs-3">
-                            <a href="">
-                                <p class="m-b-m"><span>生产数</span></p>
-                                <p>2</p>
-                            </a>
+                        <div class="col-xs-4">
+                            <p class="m-b-m"><span>生产数</span></p>
+                            <p>{{ $working }}</p>
                         </div>
-                        <div class="col-xs-3">
-                            <a href="">
-                                <p class="m-b-m"><span>完成数</span></p>
-                                <p>2</p>
-                            </a>
+                        <div class="col-xs-4">
+                            <p class="m-b-m"><span>生产完成</span></p>
+                            <p>{{ $finished }}</p>
                         </div>
-                        <div class="col-xs-3">
-                            <a href="">
-                                <p class="m-b-m"><span>交易</span></p>
-                                <p>2</p>
-                            </a>
-                        </div>
-                        <div class="col-xs-3">
-                            <a href="">
-                                <p class="m-b-m"><span>好评</span></p>
-                                <p>2</p>
-                            </a>
+                        <div class="col-xs-4">
+                            <p class="m-b-m"><span>交易</span></p>
+                            <p>{{ $order }}</p>
                         </div>
                     </div>
                 </div>
@@ -104,8 +92,8 @@
                             <i class="fa fa-fw fa-search"></i> 账单明细
                             <span class="pull-right"><i class="fa fa-fw fa-chevron-right"></i></span>
                         </a></li>
-                    <li><a href="">
-                            <i class="fa fa-fw fa-yen"></i> 提现明细
+                    <li><a href="{{ url('user/mycash') }}">
+                            <i class="fa fa-fw fa-yen"></i> RMB明细
                             <span class="pull-right"><i class="fa fa-fw fa-chevron-right"></i></span>
                         </a></li>
                     <li><a href="{{ url('user/inviter') }}">

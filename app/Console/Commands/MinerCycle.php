@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\CoinLog;
 use App\Models\User;
 use App\Models\UserMiner;
 use Carbon\Carbon;
@@ -56,15 +57,22 @@ class MinerCycle extends Command
 
                     $cycle_time = date('Y-m-d H:i:s' , strtotime($userminer->updated_at) + $timelong);
                     if($cycle_time < $time){
-                        $coin = $userminer->miner->income * $userminer->number;
-                        User::where('id' , '=' ,$userminer->user_id)->increment('coin' , $coin);
-                        $userminer->finished = $finished+1;
+                            $coin = $userminer->miner->income * $userminer->number;
+                            User::where('id' , '=' ,$userminer->user_id)->increment('coin' , $coin);
 
-                        if($finished + 1 == $userminer->miner->cycle){
-                            $userminer->status = "over";
-                        }
+                            $cash_log = new CoinLog();
+                            $cash_log->user_id = $userminer->user_id;
+                            $cash_log->coin = $coin;
+                            $cash_log->type = 3;
+                            $cash_log->save();
 
-                        $userminer->save();
+                            $userminer->finished = $finished+1;
+
+                            if($finished + 1 == $userminer->miner->cycle){
+                                $userminer->status = "over";
+                            }
+
+                            $userminer->save();
                     }
                     $this->output->progressAdvance();
                 }
@@ -76,8 +84,9 @@ class MinerCycle extends Command
             DB::commit();
         }catch (\Exception $e){
             Log::error("error code:".$e->getCode() . ' , message :' . $e->getMessage() . ' , file :' . $e->getFile() . ' , line :' . $e->getLine());
-            $this->error($e);
             DB::rollback();
+            $this->error($e);
+
         }
 
 

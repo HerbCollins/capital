@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\Settings;
+use App\Models\CoinLog;
 use App\Models\Miner;
 use App\Repositories\Eloquent\UserMinerRepositoryEloquent;
 use Illuminate\Http\Request;
@@ -97,6 +98,8 @@ class CoinController extends Controller
             $number = $request['number'];
             $order_no = $request['order_no'];
             $this->userMinerRepositoryEloquent->payment($miner_id , $user_id, $order_no , $number );
+
+
 
             Log::info("[CoinController@payment] user [".$this->user->name . "] bought [" . $number ."] miner [".$miner_id."]");
 

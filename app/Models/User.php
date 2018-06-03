@@ -18,7 +18,7 @@ class User extends AuthUser implements Transformable
      * @var array
      */
     protected $fillable = [
-        'name' , 'phone' , 'email', 'password', 'hash' , 'inviter' , 'coin'
+        'name' , 'username' , 'rmb' , 'phone' , 'email', 'password', 'payment_password', 'hash' , 'inviter' , 'coin' , 'wechat' , 'alipay' ,'bankcard' , 'bank'
     ];
 
     /**
@@ -27,7 +27,7 @@ class User extends AuthUser implements Transformable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
 
     public function setPasswordAttribute($value)

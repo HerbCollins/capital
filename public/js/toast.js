@@ -24,7 +24,7 @@
             } , 5000);
         }
 
-        this.success=function(icon , message)
+        this.success=function()
         {
             var _id = this.init();
 

@@ -15,7 +15,7 @@ class PriceTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i =0 ; $i < self::GENERATE_NUMBER ; $i++)
+        for ($i = 0 ; $i < self::GENERATE_NUMBER ; $i++)
         {
             $begin = self::GENERATE_NUMBER - $i;
             $priceModel = new Price();

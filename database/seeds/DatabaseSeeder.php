@@ -21,8 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SettingTableSeeder::class);
         $this->call(CoinLogTypeTableSeeder::class);
         $this->call(CoinLogTableSeeder::class);
-
-
         $this->call(UserMinerTableSeeder::class);
+        $this->call(UserOrderTableSeeder::class);
     }
 }

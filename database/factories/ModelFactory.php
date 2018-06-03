@@ -29,4 +29,9 @@ $factory->define(App\Models\UserMiner::class, function (Faker\Generator $faker) 
 
     ];
 });
+$factory->define(App\Models\UserOrder::class, function (Faker\Generator $faker) {
+    return [
+
+    ];
+});
 

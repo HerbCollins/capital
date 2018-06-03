@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTypeToUserOrdersTable extends Migration
+class AddUsernameToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddTypeToUserOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::table('user_orders', function (Blueprint $table) {
-            $table->enum('type' , ["1","2"])->default("1");
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('username' , 256)->after('name')->nullable();
         });
     }
 
@@ -24,8 +24,8 @@ class AddTypeToUserOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::table('user_orders', function (Blueprint $table) {
-            //
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('username');
         });
     }
 }

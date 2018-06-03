@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\MinerCycle;
+use App\Console\Commands\TodayPrice;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,6 +17,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\Inspire::class,
         MinerCycle::class,
+        TodayPrice::class,
     ];
 
     /**
@@ -30,5 +32,6 @@ class Kernel extends ConsoleKernel
                  ->hourly();
 
         $schedule->command('miner:cycle')->everyMinute();
+        $schedule->command('price:today')->dailyAt("00:10");
     }
 }
