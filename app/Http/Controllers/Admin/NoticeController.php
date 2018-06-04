@@ -18,12 +18,12 @@ class NoticeController extends Controller
     {
         $notices = Notice::orderBy('updated_at' , 'desc')->paginate(20);
 
-        return view('admin.notice.index' , compact('notices'));
+        return view('admin.notices.index' , compact('notices'));
     }
 
     public function create()
     {
-        return view('admin.notice.create');
+        return view('admin.notices.create');
     }
 
     public function store(Request $request)
