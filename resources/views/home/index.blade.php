@@ -11,7 +11,7 @@
                 <div class="col-xs-6 col-lg-6">
                     <div class="panel">
                         <div class="panel-body text-center">
-                            <span class="home-icons"><i class="fa fa-fw fa-user"></i> 2</span>
+                            <span class="home-icons"><i class="fa fa-fw fa-user"></i> {{ $inviter }}</span>
                             <p>直推人数</p>
                         </div>
                     </div>
@@ -19,7 +19,7 @@
                 <div class="col-xs-6 col-lg-6">
                     <div class="panel">
                         <div class="panel-body text-center">
-                            <span class="home-icons"><i class="fa fa-fw fa-bitcoin"></i> 11076.00</span>
+                            <span class="home-icons"><i class="fa fa-fw fa-bitcoin"></i> {{ $coin }}</span>
                             <p>全球币余额/全球币</p>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                 <div class="col-xs-6 col-lg-6">
                     <div class="panel">
                         <div class="panel-body text-center">
-                            <span class="home-icons"><i class="fa fa-fw fa-area-chart"></i> 0</span>
+                            <span class="home-icons"><i class="fa fa-fw fa-area-chart"></i> {{ $today_get }}</span>
                             <p>今日收益/全球币</p>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                 <div class="col-xs-6 col-lg-6">
                     <div class="panel">
                         <div class="panel-body text-center">
-                            <span class="home-icons"><i class="fa fa-fw fa-database"></i> 360</span>
+                            <span class="home-icons"><i class="fa fa-fw fa-database"></i> {{ $income }}</span>
                             <p>全球币收益总额</p>
                         </div>
                     </div>
