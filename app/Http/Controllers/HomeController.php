@@ -27,7 +27,11 @@ class HomeController extends Controller
 
         $today_get = CoinLog::where(['type' =>3 , 'user_id' => $user->id])->whereDate('updated_at' , '=' , Carbon::today()->toDateString())->sum('coin');
 
+        $today_get = $today_get ? $today_get : 0;
+
         $income = CoinLog::where(['type' =>3 , 'user_id' => $user->id])->sum('coin');
+
+        $income = $income ? $income : 0;
 
         return view('home.index' , compact('coin' ,'inviter' , 'today_get' , 'income'));
     }
