@@ -1,7 +1,6 @@
 @extends('layouts.frontend.master')
 
 @section('body')
-    <div class="row">
         <div class="col-xs-12 col-lg-8 col-lg-offset-2">
             <div class="row">
                 <div class="col-xs-12 banner">
@@ -57,7 +56,5 @@
                 </div>
             </div>
         </div>
-    </div>
-
 
 @endsection
