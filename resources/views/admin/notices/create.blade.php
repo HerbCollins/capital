@@ -42,7 +42,7 @@
                         </div>
                     @endif
                     <div class="panel-body panel-form">
-                        <form class="form-horizontal form-bordered" data-parsley-validate="true" action="{{ url('admin/orders/' .$order['id'] ) }}" method="POST">
+                        <form class="form-horizontal form-bordered" data-parsley-validate="true" action="{{ url('admin/notices/' ) }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('patch') }}
                             <div class="form-group">
