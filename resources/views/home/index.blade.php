@@ -50,7 +50,15 @@
                             公告
                         </div>
                         <div class="panel-body">
-                            asd
+                            @if(count($notices))
+                            <ul class="list-group">
+                                @foreach($notices as $notice)
+                                <a class="list-group-item" href="{{ url('/notice/'.$notice->id) }}">
+                                    {{ $notice->title }}
+                                </a>
+                                @endforeach
+                            </ul>
+                            @endif
                         </div>
                     </div>
                 </div>

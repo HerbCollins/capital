@@ -169,5 +169,19 @@ class MenusTableSeeder extends Seeder
         $CashRecharge->parent_id = $CashManage->id;
         $CashRecharge->save();
 
+        $NoticeManage = new Menu();
+        $NoticeManage->name = "公告管理";
+        $NoticeManage->url = "admin/notices/list";
+        $NoticeManage->slug = "notice.list";
+        $NoticeManage->parent_id = 0;
+        $NoticeManage->save();
+
+        $Notice = new Menu();
+        $Notice->name = "公告列表";
+        $Notice->url = "admin/notices/list";
+        $Notice->slug = "notice.list";
+        $Notice->parent_id = $NoticeManage->id;
+        $Notice->save();
+
     }
 }

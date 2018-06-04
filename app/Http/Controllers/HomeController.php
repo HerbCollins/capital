@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CoinLog;
+use App\Models\Notice;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -33,6 +34,15 @@ class HomeController extends Controller
 
         $income = $income ? $income : 0;
 
-        return view('home.index' , compact('coin' ,'inviter' , 'today_get' , 'income'));
+        $notices = Notice::whereNotNull("published_at")->orderBy('published_at' , 'desc')->get();
+
+        return view('home.index' , compact('coin' ,'inviter' , 'today_get' , 'income' , 'notices'));
+    }
+
+    public function notice($id)
+    {
+        $notice = Notice::find($id);
+
+        return view('home.notice' , compact('notice'));
     }
 }

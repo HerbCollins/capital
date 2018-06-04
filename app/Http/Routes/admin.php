@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth:admin']], function ($router) {
     $router->resource('coinprices', 'PriceController');
 
     $router->resource('orders', 'OrderController');
+    $router->resource('notices', 'NoticeController');
 
     $router->get('orders/type/{type}', 'OrderController@lists')->name('admin.orders.type');
 

@@ -185,7 +185,9 @@ return [
         /**
          * Qrcode
          */
-        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
+        Stevenyangecho\UEditor\UEditorServiceProvider::class
     ],
 
     /*

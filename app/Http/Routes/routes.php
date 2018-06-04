@@ -26,6 +26,8 @@
 Route::group(['middleware' => ['web']], function () {
     Route::get('/' , 'HomeController@index');
 
+    Route::get('/notice/{id}' , 'HomeController@notice');
+
     Route::get('/coins' , 'CoinController@index');
 
     Route::post('/coins/miner/buyorder' , [

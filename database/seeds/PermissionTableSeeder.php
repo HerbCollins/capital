@@ -17,7 +17,10 @@ class PermissionTableSeeder extends Seeder
         $this->adminUser();
         $this->permission();
         $this->role();
+
+        $this->notice();
     }
+
 
     /**
      * create system permission
@@ -271,5 +274,33 @@ class PermissionTableSeeder extends Seeder
         $roleDelete->display_name = '删除角色';
         $roleDelete->description = '删除角色';
         $roleDelete->save();
+    }
+
+
+    public function notice()
+    {
+        $list = New Permission();
+        $list->name = 'notice.list';
+        $list->display_name = '公告列表';
+        $list->description = '公告列表';
+        $list->save();
+
+        $add = New Permission();
+        $add->name = 'notice.add';
+        $add->display_name = '添加公告';
+        $add->description = '添加公告';
+        $add->save();
+
+        $edit = New Permission();
+        $edit->name = 'notice.edit';
+        $edit->display_name = '修改公告';
+        $edit->description = '修改公告';
+        $edit->save();
+
+        $delete = New Permission();
+        $delete->name = 'notice.delete';
+        $delete->display_name = '删除公告';
+        $delete->description = '删除公告';
+        $delete->save();
     }
 }
