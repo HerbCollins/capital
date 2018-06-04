@@ -24,6 +24,9 @@ img{
 .container{
     padding:0px;
 }
+.input-group{
+    z-index: 0;
+}
 
 .font-md{
     font-size: 1.2em;

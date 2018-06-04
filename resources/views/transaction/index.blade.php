@@ -332,6 +332,11 @@
                 url:_url,
                 type:_method,
                 dataType:"json",
+                beforeSend:function () {
+                    $('#modal').modal({
+                        show:false
+                    });
+                },
                 success:function (rst) {
                     if(rst.code == 0){
                         _toas =new $.Toast({
