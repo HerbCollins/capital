@@ -51,14 +51,6 @@
             <!-- begin header navigation right -->
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <form class="navbar-form full-width">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="关键字" />
-                            <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-                        </div>
-                    </form>
-                </li>
-                <li>
                     <a href="{{ url('/') }}" target="_blank" title="进入前台">
                         <i class="fa fa-fw fa-reply"></i>
                     </a>
