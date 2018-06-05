@@ -75,6 +75,12 @@ class CashController extends Controller
         return view('admin.cashs.recharge');
     }
 
+    public function rechargelist()
+    {
+        $lists = Cash::where(['type' => 'recharge'])->paginate(20);
+        return view('admin.cashs.recharge_list' , compact('lists'));
+    }
+
     public function dealrecharge(Request $request)
     {
         DB::beginTransaction();
@@ -95,12 +101,12 @@ class CashController extends Controller
             $cash->status = "finished";
             $cash->save();
 
-            $user = User::find($cash->user_id);
-            $user->rmb = $user->rmb + $cash->rmb;
+            $user = User::find($user->id);
+            $user->rmb = $user->rmb + $rmb;
             $user->save();
 
             flash('操作成功' , 'success');
-            Log::error("[CashController@dealrecharge] success ");
+            Log::info("[CashController@dealrecharge] success ");
             DB::commit();
             return Redirect::back();
         }catch (\Exception $e){

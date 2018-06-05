@@ -7,7 +7,7 @@
                 <div class="panel-body" style="padding-bottom: 0px;">
                     <div class="row">
                         <div class="col-xs-6" style=" border-right:1px solid #eee;">
-                            <p class="m-b-m">ID:{{ $user->hash }}</p>
+                            <p class="m-b-m">HASH_ID:{{ $user->hash }}</p>
                             <p>昵称：{{ $user->name }}</p>
                             <p class="m-t-m"><span class="label label-default">{{ $coin_name }}vip1</span></p>
                         </div>

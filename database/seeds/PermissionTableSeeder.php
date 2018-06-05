@@ -183,6 +183,12 @@ class PermissionTableSeeder extends Seeder
         $cash->description = '提现与充值';
         $cash->save();
 
+        $cash = New Permission();
+        $cash->name = 'cash.add';
+        $cash->display_name = '充值';
+        $cash->description = '充值';
+        $cash->save();
+
 
     }
 

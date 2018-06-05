@@ -164,7 +164,7 @@ class MenusTableSeeder extends Seeder
 
         $CashRecharge = new Menu();
         $CashRecharge->name = "充值";
-        $CashRecharge->url = "admin/cashs/recharge";
+        $CashRecharge->url = "admin/cashs/recharge_list";
         $CashRecharge->slug = "cash.manage";
         $CashRecharge->parent_id = $CashManage->id;
         $CashRecharge->save();

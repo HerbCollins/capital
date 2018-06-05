@@ -9,15 +9,8 @@
 
 @section('admin-content')
     <div id="content" class="content">
-        <!-- begin breadcrumb -->
-        <ol class="breadcrumb pull-right">
-            <li><a href="javascript:;">Home</a></li>
-            <li><a href="javascript:;">Tables</a></li>
-            <li class="active">Basic Tables</li>
-        </ol>
-        <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">菜单列表 <small>header small text goes here...</small></h1>
+        <h1 class="page-header">账单列表</h1>
         <!-- end page-header -->
         <!-- begin row -->
         <div class="row">
@@ -38,7 +31,7 @@
                             <thead>
                             <tr>
                                 <th style="width: 12%;">编号</th>
-                                <th style="width: 5%;">用户</th>
+                                <th style="width: 5%;">用户ID</th>
                                 <th style="width: 8%;">价格</th>
                                 <th style="width: 8%;">币数</th>
                                 <th style="width: 8%;">类型</th>
@@ -52,10 +45,24 @@
                                 <tr id="{{ $order['id'] }}">
                                     <td>{{ $order['hash_no'] }}</td>
                                     <td>{{ $order['user_id'] }}</td>
-                                    <td>{{ $order['price'] }}</td>
+                                    <td><i class="fa fa-fw fa-yen"></i> {{ $order['price'] }}</td>
                                     <td>{{ $order['coins'] }}</td>
-                                    <td>{{ $order['type'] }}</td>
-                                    <td>{{ $order['status'] }}</td>
+                                    <td>
+                                        @if($order['type'] == 1)
+                                            求购
+                                            @else
+                                            卖出
+                                            @endif
+                                    </td>
+                                    <td>
+                                        @if($order['status'] == 1)
+                                            交易中
+                                        @elseif($order['status'] == 2)
+                                            交易成功
+                                            @else
+                                            交易取消
+                                        @endif
+                                    </td>
                                     <td>{{ $order['updated_at'] }}</td>
                                     <td>{!! $order['button'] !!}</td>
                                 </tr>

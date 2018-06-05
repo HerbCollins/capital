@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth:admin']], function ($router) {
 
     $router->get('cashs/draw' , 'CashController@draw')->name('admin.cashs.draw');
     $router->get('cashs/recharge' , 'CashController@recharge')->name('admin.cashs.recharge');
+    $router->get('cashs/recharge_list' , 'CashController@rechargelist')->name('admin.cashs.rechargelist');
     $router->post('cashs/recharge/dealrecharge' , 'CashController@dealrecharge')->name('admin.cashs.dealrecharge');
     $router->get('cashs/draw/reply/{id}' , 'CashController@reply')->name('admin.cashs.reply');
     $router->get('cashs/draw/dealed/{id}' , 'CashController@dealed')->name('admin.cashs.deal');

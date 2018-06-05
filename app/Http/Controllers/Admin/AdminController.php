@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Facades\Settings;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Price;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -11,7 +14,16 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $out = Order::where(['type' => "1",'status' => "2"])->whereDate('updated_at','=' , Carbon::now()->toDateString())->sum("coins");
+        $in = Order::where(['type' => "2",'status' => "2"])->whereDate('updated_at','=' , Carbon::now()->toDateString())->sum("coins");
+
+        $price = Price::orderBy('created_at','desc')->first();
+
+        $coin['in'] = $in;
+        $coin['out'] = $out;
+        $coin['price'] = $price->price;
+        $coin['name'] = Settings::get('coin_name');
+        return view('admin.index' , compact('coin'));
     }
 
     public function system()

@@ -8,8 +8,9 @@
 
 @section('admin-content')
     <div id="content" class="content">
+
         <!-- begin page-header -->
-        <h1 class="page-header">公告列表</h1>
+        <h1 class="page-header">矿机管理 </h1>
         <!-- end page-header -->
         <!-- begin row -->
         <div class="row">
@@ -26,33 +27,33 @@
                         <h4 class="panel-title">列表</h4>
                     </div>
                     <div class="panel-body">
-                        {{--@permission('menus.add')--}}
-                        @if(auth('admin')->user()->can('miners.add'))
-                            <a href="{{ url('admin/notices/create') }}">
-                                <button type="button" class="btn btn-primary m-r-5 m-b-5"><i class="fa fa-plus-square-o"></i> 新增</button>
+                        @if(auth('admin')->user()->can('cash.add'))
+                            <a href="{{ url('admin/cashs/recharge') }}">
+                                <button type="button" class="btn btn-primary m-r-5 m-b-5"><i class="fa fa-plus-square-o"></i> 充值</button>
                             </a>
                         @endif
-                        {{--@endpermission--}}
                         <table class="table table-bordered table-hover" id="treeTable">
                             <thead>
                             <tr>
                                 <th style="width: 2%;">编号</th>
-                                <th style="width: 8%;">标题</th>
-                                <th style="width: 8%;">发布时间</th>
-                                <th style="width: 10%;">更新时间</th>
-                                <th style="width: 10%;">操作</th>
+                                <th style="width: 5%;">用户HASH_ID</th>
+                                <th style="width: 8%;">充值金额</th>
+                                <th style="width: 8%;">状态</th>
+                                <th style="width: 8%;">更新时间</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($notices as $notice)
-                                <tr id="{{ $notice->id }}">
-                                    <td>{{ $notice->id }}</td>
-                                    <td>{{ $notice->title }}</td>
-                                    <td>{{ $notice->published_at }}</td>
-                                    <td>{{ $notice->updated_at }}</td>
-                                    <td>{!! $notice->button !!}</td>
-                                </tr>
-                            @endforeach
+                            @if(count($lists))
+                                @foreach($lists as $list)
+                                    <tr id="{{ $list->id }}">
+                                        <td>{{ $list->id }}</td>
+                                        <td>{{ $list->user->hash }}</td>
+                                        <td>{{ $list->rmb }}</td>
+                                        <td>{{ $list->status }}</td>
+                                        <td>{{ $list->updated_at }}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </div>
@@ -63,8 +64,7 @@
         </div>
         <!-- end row -->
     </div>
-@stop
-
+@endsection
 
 @section('admin-js')
     <script src="{{ asset('asset_admin/assets/plugins/gritter/js/jquery.gritter.js') }}"></script>

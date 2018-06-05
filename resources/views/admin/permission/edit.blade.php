@@ -7,15 +7,8 @@
 
 @section('admin-content')
     <div id="content" class="content">
-        <!-- begin breadcrumb -->
-        <ol class="breadcrumb pull-right">
-            <li><a href="javascript:;">Home</a></li>
-            <li><a href="javascript:;">Form Stuff</a></li>
-            <li class="active">Form Validation</li>
-        </ol>
-        <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">修改权限 <small>header small text goes here...</small></h1>
+        <h1 class="page-header">修改权限</h1>
         <!-- end page-header -->
 
         <!-- begin row -->
@@ -31,7 +24,7 @@
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                         </div>
-                        <h4 class="panel-title">Basic Form Validation</h4>
+                        <h4 class="panel-title">修改权限</h4>
                     </div>
                     @if(count($errors)>0)
                         <div class="alert alert-danger">
