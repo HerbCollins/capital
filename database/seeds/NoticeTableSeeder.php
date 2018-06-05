@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Notice;
+
 class NoticeTableSeeder extends Seeder
 {
     /**
