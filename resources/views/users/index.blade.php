@@ -9,7 +9,7 @@
                         <div class="col-xs-6" style=" border-right:1px solid #eee;">
                             <p class="m-b-m">ID:{{ $user->hash }}</p>
                             <p>昵称：{{ $user->name }}</p>
-                            <p class="m-t-m"><span class="label label-default">全球vip1</span></p>
+                            <p class="m-t-m"><span class="label label-default">{{ $coin_name }}vip1</span></p>
                         </div>
                         <div class="col-xs-6">
                             <div class="row">
@@ -73,7 +73,7 @@
                         @else
                             <a href="javascript:sign(this);">
                                 <span style="display: block;" class="m-b-m"><i class="fa fa-fw fa-edit fa-2x"></i></span>
-                                <span>全球签到</span>
+                                <span>签到</span>
                             </a>
                         @endif
                     </div>

@@ -280,25 +280,25 @@ class PermissionTableSeeder extends Seeder
     public function notice()
     {
         $list = New Permission();
-        $list->name = 'notice.list';
+        $list->name = 'notices.list';
         $list->display_name = '公告列表';
         $list->description = '公告列表';
         $list->save();
 
         $add = New Permission();
-        $add->name = 'notice.add';
+        $add->name = 'notices.add';
         $add->display_name = '添加公告';
         $add->description = '添加公告';
         $add->save();
 
         $edit = New Permission();
-        $edit->name = 'notice.edit';
+        $edit->name = 'notices.edit';
         $edit->display_name = '修改公告';
         $edit->description = '修改公告';
         $edit->save();
 
         $delete = New Permission();
-        $delete->name = 'notice.delete';
+        $delete->name = 'notices.delete';
         $delete->display_name = '删除公告';
         $delete->description = '删除公告';
         $delete->save();

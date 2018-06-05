@@ -13,7 +13,7 @@
                             <div class="col-xs-3">
                                 <a href="{{ url('/coins') }}">
                                     <span class="icon-nav"><i class="fa fa-fw fa-bitcoin fa-2x"></i></span>
-                                    <span>全球币</span>
+                                    <span>{{ $coin_name }}币</span>
                                 </a>
                             </div>
                             <div class="col-xs-3">

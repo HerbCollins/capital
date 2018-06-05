@@ -171,15 +171,15 @@ class MenusTableSeeder extends Seeder
 
         $NoticeManage = new Menu();
         $NoticeManage->name = "公告管理";
-        $NoticeManage->url = "admin/notices/list";
-        $NoticeManage->slug = "notice.list";
+        $NoticeManage->url = "admin/notices";
+        $NoticeManage->slug = "notices.list";
         $NoticeManage->parent_id = 0;
         $NoticeManage->save();
 
         $Notice = new Menu();
         $Notice->name = "公告列表";
-        $Notice->url = "admin/notices/list";
-        $Notice->slug = "notice.list";
+        $Notice->url = "admin/notices";
+        $Notice->slug = "notices.list";
         $Notice->parent_id = $NoticeManage->id;
         $Notice->save();
 

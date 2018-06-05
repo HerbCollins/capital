@@ -3,6 +3,9 @@
 Route::group(['middleware' => ['auth:admin']], function ($router) {
     $router->get('/', ['uses' => 'AdminController@index', 'as' => 'admin.index']);
 
+    $router->get('/system', ['uses' => 'AdminController@system', 'as' => 'admin.system']);
+    $router->post('/system/setting', ['uses' => 'AdminController@systemsetting', 'as' => 'admin.system.setting']);
+
     $router->resource('index', 'IndexController');
 
     //目录

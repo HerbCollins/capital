@@ -20,7 +20,7 @@
                     <div class="panel">
                         <div class="panel-body text-center">
                             <span class="home-icons"><i class="fa fa-fw fa-bitcoin"></i> {{ $coin }}</span>
-                            <p>全球币余额/全球币</p>
+                            <p>{{ $coin_name }}币余额/{{ $coin_name }}币</p>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <div class="panel">
                         <div class="panel-body text-center">
                             <span class="home-icons"><i class="fa fa-fw fa-area-chart"></i> {{ $today_get }}</span>
-                            <p>今日收益/全球币</p>
+                            <p>今日收益/{{ $coin_name }}币</p>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div class="panel">
                         <div class="panel-body text-center">
                             <span class="home-icons"><i class="fa fa-fw fa-database"></i> {{ $income }}</span>
-                            <p>全球币收益总额</p>
+                            <p>{{ $coin_name }}币收益总额</p>
                         </div>
                     </div>
                 </div>

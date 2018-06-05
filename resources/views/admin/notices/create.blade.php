@@ -14,7 +14,7 @@
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Form Validation <small>header small text goes here...</small></h1>
+        <h1 class="page-header">增加公告</h1>
         <!-- end page-header -->
 
         <!-- begin row -->
@@ -42,21 +42,31 @@
                         </div>
                     @endif
                     <div class="panel-body panel-form">
-                        <form class="form-horizontal form-bordered" data-parsley-validate="true" action="{{ url('admin/notices/' ) }}" method="POST">
+                        <form class="form-horizontal form-bordered" data-parsley-validate="true" action="{{ url('admin/notices' ) }}" method="POST">
                             {{ csrf_field() }}
-                            {{ method_field('patch') }}
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4" for="title">标题 * :</label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" type="text" disabled="disabled" name="title" placeholder="标题"  value="{{ old('title') }}"/>
+                                    <input class="form-control" type="text" name="title" placeholder="标题"  value="{{ old('title') }}"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4" for="status">内容:</label>
+                                <label class="control-label col-md-4 col-sm-4" for="status">内容 * :</label>
                                 <div class="col-md-6 col-sm-6">
                                     <!-- 加载编辑器的容器 -->
-                                    <script id="container" name="content" type="text/plain"></script>
+                                    <script id="container" name="content" type="text/plain">
+                                        {{ old('content') }}
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4" for="status">是否发布 * :</label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="checkbox" name="is_publish" id="is_publish" value="1">
+                                    <label for="is_publish">
+                                       是
+                                    </label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -74,12 +84,19 @@
     </div>
 
 
-    <!-- 实例化编辑器 -->
-    <script type="text/javascript">
+@stop
+
+@section('admin-js')
+    <script src="{{ asset('asset_admin/assets/plugins/parsley/dist/parsley.js') }}"></script>
+    <script src="{{ asset('asset_admin/assets/plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
+    <script>
+        $('.selectpicker').selectpicker('render');
+
         var ue = UE.getEditor('container');
         ue.ready(function() {
             ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.
+            ue.setHeight(400)
         });
     </script>
-@stop
+@endsection
 

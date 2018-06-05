@@ -38,7 +38,8 @@ class CoinController extends Controller
     public function index()
     {
         $miners = Miner::all();
-        return view('coin.index' , compact('miners'));
+        $coin_name = $this->coin_name;
+        return view('coin.index' , compact('miners' , 'coin_name'));
     }
 
     public function buyOrder(Request $request)

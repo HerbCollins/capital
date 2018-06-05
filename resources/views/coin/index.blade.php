@@ -7,7 +7,7 @@
                 <div class="panel">
                     <div class="panel-heading">
                         <span class="label label-default">VIP</span>
-                        <a href="">【全球VIP1】{{ $miner->title }}</a>
+                        <a href="">【{{ $coin_name }}VIP1】{{ $miner->title }}</a>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -15,7 +15,7 @@
                                 <img src="{{ asset($miner->img) }}" alt="">
                             </div>
                             <div class="col-xs-8 col-md-8">
-                                <p>周期收益: {{ $miner->income }}全球币</p>
+                                <p>周期收益: {{ $miner->income }}{{ $coin_name }}币</p>
                                 <p>周期时间: {{ $miner->timelong }}小时</p>
                                 <p>收益周期: {{ $miner->cycle }}</p>
                             </div>
@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <p>累计限购{{ $miner->max }}个 可同时存在{{ $miner->exist_max }}个 每天限购{{ $miner->day_max }}个</p>
-                                <p><span>单价：{{ $miner->price }} 全球币</span></p>
+                                <p><span>单价：{{ $miner->price }} {{ $coin_name }}币</span></p>
                                 <hr>
                                 <form action="{{ url('coins/miner/buyorder') }}" method="post">
                                     <div class="row">

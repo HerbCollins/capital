@@ -53,6 +53,7 @@ class UserController extends Controller
         $order = $order + Order::where(['user_id' => $user->id ])->count();
 
         $is_signed = isset($sign->id) ? true : false;
+
         return view('users.index' , compact('user' , 'coin_name' , 'is_signed' , 'working' , 'finished' , 'order'));
     }
 
@@ -62,7 +63,8 @@ class UserController extends Controller
         $rmb = $user->rmb;
         $price_lastest = Price::orderBy('created_at' , 'desc')->first();
         $price = $price_lastest->price;
-        return view('users.recharge' , compact('price' , 'rmb' , 'user'));
+        $coin_name = $this->coin_name;
+        return view('users.recharge' , compact('price' , 'rmb' , 'user' , 'coin_name'));
     }
 
 
@@ -72,7 +74,8 @@ class UserController extends Controller
         $rmb = $user->rmb;
         $price_lastest = Price::orderBy('created_at' , 'desc')->first();
         $price = $price_lastest->price;
-        return view('users.withdraw' , compact('rmb' , 'price'));
+        $coin_name = $this->coin_name;
+        return view('users.withdraw' , compact('rmb' , 'price' , 'coin_name'));
     }
 
     public function withdrawresult(Request $request)
@@ -106,16 +109,16 @@ class UserController extends Controller
 
             abort(404 , $e->getMessage());
         }
+        $coin_name = $this->coin_name;
 
-
-        return view('users.withdraw_result' , compact('cash_no'));
+        return view('users.withdraw_result' , compact('cash_no' , 'coin_name'));
     }
 
     public function edit()
     {
         $user = Auth::user();
-
-        return view('users.edit' , compact('user'));
+        $coin_name = $this->coin_name;
+        return view('users.edit' , compact('user' , 'coin_name'));
     }
 
     public function update(Request $request)
@@ -143,7 +146,8 @@ class UserController extends Controller
 
     public function reset()
     {
-        return view('users.reset');
+        $coin_name = $this->coin_name;
+        return view('users.reset' ,compact('coin_name'));
     }
 
     public function ajaxreset(Request $request)
@@ -173,7 +177,8 @@ class UserController extends Controller
 
     public function payment()
     {
-        return view('users.payment');
+        $coin_name = $this->coin_name;
+        return view('users.payment' , compact('coin_name'));
     }
 
     public function ajaxpayment(PaymentRequest $request)
@@ -205,7 +210,8 @@ class UserController extends Controller
 
     public function myorder()
     {
-        return view('users.myorder');
+        $coin_name = $this->coin_name;
+        return view('users.myorder' , compact('coin_name'));
     }
 
     public function sendsell()
@@ -213,7 +219,9 @@ class UserController extends Controller
         $user = Auth::user();
 
         $orders = Order::where(['user_id' => $user->id , 'type' => "1"])->orderBy('created_at' , 'desc')->get();
-        return view('users.myorder_type' , compact('orders'));
+
+        $coin_name = $this->coin_name;
+        return view('users.myorder_type' , compact('orders' , 'coin_name'));
     }
 
     public function sendbought()
@@ -221,7 +229,8 @@ class UserController extends Controller
         $user = Auth::user();
 
         $orders = Order::where(['user_id' => $user->id , 'type' => "2"])->orderBy('created_at' , 'desc')->get();
-        return view('users.myorder_type' , compact('orders'));
+        $coin_name = $this->coin_name;
+        return view('users.myorder_type' , compact('orders' , 'coin_name'));
     }
 
     public function getsell()
@@ -229,7 +238,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         $orders = UserOrder::where(['user_id' => $user->id, 'type' => "1"])->orderBy('created_at' , 'desc')->get();
-
+        $coin_name = $this->coin_name;
         if(count($orders)){
             foreach ($orders as &$order){
                 $orderModel = Order::where('hash_no' , $order->order_hash_id)->first();
@@ -240,7 +249,7 @@ class UserController extends Controller
         }
 
 
-        return view('users.myorder_type' , compact('orders'));
+        return view('users.myorder_type' , compact('orders' , 'coin_name'));
     }
 
 
@@ -258,8 +267,9 @@ class UserController extends Controller
                 $order->coins = $orderModel->coins;
             }
         }
+        $coin_name = $this->coin_name;
 
-        return view('users.myorder_type' , compact('orders'));
+        return view('users.myorder_type' , compact('orders' , 'coin_name'));
     }
 
     public function myminer()
@@ -268,8 +278,8 @@ class UserController extends Controller
         $working = UserMiner::where(['user_id' => $user , 'status' => 'working'])->orderBy('created_at','desc')->get();
 
         $finished = UserMiner::where(['user_id' => $user , 'status' => 'over'])->orderBy('created_at','desc')->get();
-
-        return view('users.myminer' , compact('working' , 'finished'));
+        $coin_name = $this->coin_name;
+        return view('users.myminer' , compact('working' , 'finished' , 'coin_name'));
     }
 
     public function mycash()
@@ -278,7 +288,7 @@ class UserController extends Controller
         $ins = Cash::where(['user_id' => $user , 'type' => "recharge" ])->orWhere(['user_id' => $user , 'type' => "sellcoin" ])->get();
         $outs = Cash::where(['user_id' => $user , 'type' => "withdraw" ])->orWhere(['user_id' => $user , 'type' => "buycoin" ])->get();
 
-        $coin_name = Settings::get('coin_name');
+        $coin_name = $this->coin_name;
         return view('users.cash' , compact('ins' , 'outs' , 'coin_name'));
     }
 
@@ -288,7 +298,7 @@ class UserController extends Controller
         $outs = CoinLog::where(['user_id' => $user ])->where('type' , '!=' , 3)->get();
         $ins = CoinLog::where(['user_id' => $user , 'type' => 3])->get();
 
-        $coin_name = Settings::get('coin_name');
+        $coin_name = $this->coin_name;
         return view('users.mybill' , compact('ins' , 'outs' , 'coin_name'));
     }
 
@@ -299,8 +309,8 @@ class UserController extends Controller
         $hash = $user->hash;
 
         $url = url('user/register/'.$hash);
-
-        return view('users.inviter' , compact('url' , 'hash'));
+        $coin_name = $this->coin_name;
+        return view('users.inviter' , compact('url' , 'hash' , 'coin_name'));
     }
 
     public function mygroup()
@@ -310,7 +320,7 @@ class UserController extends Controller
 
         $hash = $user->hash;
         $users = User::where(['inviter' => $hash])->paginate(self::INVITER_USERS_PAGE_COUNT);
-
-        return view('users.mygroup' , compact('users'));
+        $coin_name = $this->coin_name;
+        return view('users.mygroup' , compact('users' , 'coin_name'));
     }
 }

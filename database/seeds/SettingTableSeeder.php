@@ -16,5 +16,10 @@ class SettingTableSeeder extends Seeder
         $coin_name->key = 'coin_name';
         $coin_name->value = '全球';
         $coin_name->save();
+
+        $coin_name = new Setting();
+        $coin_name->key = 'site_name';
+        $coin_name->value = '虚拟币';
+        $coin_name->save();
     }
 }

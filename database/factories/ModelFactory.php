@@ -34,4 +34,13 @@ $factory->define(App\Models\UserOrder::class, function (Faker\Generator $faker) 
 
     ];
 });
+$factory->define(App\Models\Notice::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence,
+        'content' => $faker->paragraphs(5, true),
+        'published_at' => $faker->dateTime('now'),
+        'updated_at' => $faker->dateTime('now'),
+        'created_at' => $faker->dateTime('now')
+    ];
+});
 

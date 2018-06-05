@@ -18,14 +18,22 @@ class SettingsService
     public static function get($key = "")
     {
         $value = Setting::where('key' ,$key)->value('value');
-        return json_decode(json_encode($value));
+        return $value;
     }
 
-    public static function set($key = "" , array $value = [])
+    public static function set($key = "" ,  $value = "" )
     {
-        $setting = new Setting();
-        $setting->key = $key;
-        $setting->value = json_encode($value);
-        return $setting->save();
+        $find = Setting::where('key' , $key)->first();
+        if(isset($find->id) && $find->id > 0){
+
+            $find->key = $key;
+            $find->value = $value;
+            return $find->save();
+        }else{
+            $setting = new Setting();
+            $setting->key = $key;
+            $setting->value = $value;
+            return $setting->save();
+        }
     }
 }
