@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\UserMiner;
 use App\Models\UserOrder;
 use App\Repositories\Eloquent\UserRepositoryEloquent;
+use App\Repositories\SMSRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -191,6 +192,7 @@ class UserController extends Controller
             if (!Hash::check($password, $make)) { //原始密码和数据库里的密码进行比对
                 throw new \Exception('验证失败' , 10002);
             }
+            $user->password = $password;
             $response = $user->save();
 
             if($response){
@@ -217,16 +219,25 @@ class UserController extends Controller
     public function payment()
     {
         $coin_name = $this->coin_name;
-        return view('users.payment' , compact('coin_name'));
+        $user = Auth::user();
+        $phone = $user->phone;
+        return view('users.payment' , compact('coin_name' , 'phone'));
     }
 
     public function ajaxpayment(Request $request)
     {
         try{
+            $user = Auth::user();
+
             $all = $request->except('_token');
 
             if($all['pwd'] != $all['rp_pwd']){
                 throw new \Exception('两次密码不一致',10001);
+            }
+
+            $sms = new SMSRepository();
+            if(!$sms->check($user->phone , $all['code'])){
+                throw new \Exception('验证码错误' , 10002);
             }
 
             $id  = Auth::id();

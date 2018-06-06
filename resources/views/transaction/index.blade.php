@@ -1,6 +1,7 @@
 @extends('layouts.frontend.master')
 
 @section('body')
+    <div class="col-lg-6 col-lg-offset-3">
         <div class="panel">
             <div class="panel-body">
                 <div class="row">
@@ -140,6 +141,8 @@
                 </div>
             </div>
         </div>
+
+    </div>
 @stop
 
 

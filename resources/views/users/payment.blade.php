@@ -15,18 +15,41 @@
         {{ csrf_field() }}
         <div class="panel">
             <div class="panel-body">
-                <div class="form-group">
-                    <label for="" class="col-xs-3">新密码</label>
-                    <div class="col-xs-9">
-                        <input type="password" class="form-control" name="pwd" placeholder="新密码"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="" class="col-xs-3">确认密码</label>
-                    <div class="col-xs-9">
-                        <input type="password" class="form-control" name="rp_pwd" placeholder="确认密码"/>
-                    </div>
-                </div>
+                <ul class="user-list">
+                    <li>
+                        <div class="span-li">
+                            <div class="row">
+                                <label for="" class="col-xs-3">验证码</label>
+                                <div class="col-xs-5">
+                                    <input type="text" class="form-control no-border-form text-right" name="code" placeholder="验证码">
+                                </div>
+                                <div class="col-xs-4">
+                                    <button type="button" onclick="sendSMS(this)" class="btn btn-success">获取验证码</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="span-li">
+                            <div class="row">
+                                <label for="" class="col-xs-3">支付密码</label>
+                                <div class="col-xs-9">
+                                    <input type="password" class="form-control no-border-form text-right" name="pwd" placeholder="支付密码">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="span-li">
+                            <div class="row">
+                                <label for="" class="col-xs-3">重复密码</label>
+                                <div class="col-xs-9">
+                                    <input type="password" class="form-control no-border-form text-right" name="rp_pwd" placeholder="重复密码">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </form>
@@ -54,13 +77,23 @@
                     _toas.success();
                 },
                 success:function (rst) {
-                    console.log(rst)
-                    _toas =new $.Toast({
-                        icon : '<i class="fa fa-fw fa-check-circle"></i>',
-                        message:'保存成功',
-                        type : 0
-                    });
-                    _toas.success();
+                    if(rst.code == 0){
+                        console.log(rst)
+                        _toas =new $.Toast({
+                            icon : '<i class="fa fa-fw fa-check-circle"></i>',
+                            message:'保存成功',
+                            type : 0
+                        });
+                        _toas.success();
+                    }else{
+                        _toas =new $.Toast({
+                            icon : '<i class="fa fa-fw fa-times-circle"></i>',
+                            message:rst.message,
+                            type : 1
+                        });
+                        _toas.error();
+                    }
+
                 },
                 error:function () {
                     _toas =new $.Toast({
@@ -72,6 +105,37 @@
                 }
             })
         });
+
+        function sendSMS(_obj) {
+            var _data = {
+                'phone' : "18518506037",
+                '_token' : "{{ csrf_token() }}"
+            };
+
+            $.ajax({
+                url:"{{ url('api/send') }}",
+                type:"post",
+                dataType:"json",
+                data:_data,
+                beforeSend:function () {
+                    $(_obj).attr('disabled' , 'true');
+                },
+                success:function (rst) {
+                    console.log(rst);
+                    if(rst.code == 0){
+                        timer(_obj , 60);
+                    }else{
+                        var _alert = '<div class="alert alert-danger">' + rst.message + '</div>';
+                        $("#errors").html(_alert);
+                        $(_obj).removeAttr('disabled');
+                    }
+                },
+                error:function (jqXHR , textStatus , errorThrown) {
+                    var _alert = '<div class="alert alert-danger">系统繁忙，请稍后再试</div>';
+                    $("#errors").html(_alert);
+                }
+            })
+        }
 
 
     </script>

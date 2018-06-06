@@ -11,7 +11,8 @@
 </head>
 
 <body>
-<div class="container child-page">
+<div class="child-page">
+    <div class="col-lg-6 col-lg-offset-3">
     @include('layouts.flash')
     <div class="font-md">
         <div class="panel">
@@ -35,6 +36,7 @@
         </div>
     </div>
     @yield('child-body')
+    </div>
 </div>
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>

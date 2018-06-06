@@ -3,6 +3,7 @@
 @section('title', 'User Panel')
 
 @section('body')
+    <div class="col-lg-6 col-lg-offset-3">
         <div class="panel" >
                 <div class="panel-body" style="padding-bottom: 0px;">
                     <div class="row">
@@ -113,6 +114,7 @@
                 </ul>
             </div>
         </div>
+    </div>
 @stop
 
 @section('js')

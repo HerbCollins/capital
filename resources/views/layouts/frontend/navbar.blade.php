@@ -1,6 +1,6 @@
 <!-- Fixed navbar -->
     <div class="container">
-            <div class="col-xs-12">
+            <div class="col-xs-12 col-lg-6 col-lg-offset-3">
                 <div class="nav-box">
                     <div class="nav bottom-nav">
                         <div class="text-center">
