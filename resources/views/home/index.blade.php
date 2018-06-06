@@ -1,7 +1,7 @@
 @extends('layouts.frontend.master')
 
 @section('body')
-        <div class="col-xs-12 col-lg-6 col-lg-offset-3">
+        <div class="col-xs-12>
             <div class="row">
                 <div class="col-xs-12 banner">
                     <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526472571948&di=073f2929284de93527e3a3426d432a8a&imgtype=0&src=http%3A%2F%2Fimg.ec.com.cn%2Farticle%2F20180424%2F20180424104512852.jpg" alt="">

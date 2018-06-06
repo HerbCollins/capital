@@ -12,8 +12,10 @@
 
     <body style="width: 100%">
             <div class="p-b-m">
+                <div class="col-lg-6 col-lg-offset-3">
                 @include('layouts.flash')
                 @yield('body')
+                </div>
             </div>
             @include('layouts.frontend.navbar')
     </body>
