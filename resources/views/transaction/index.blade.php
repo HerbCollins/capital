@@ -332,19 +332,20 @@
                 url:_url,
                 type:_method,
                 dataType:"json",
-                beforeSend:function () {
-                    $('#modal').modal({
-                        show:false
-                    });
-                },
                 success:function (rst) {
                     if(rst.code == 0){
+
+                        $('#modal').hide();
                         _toas =new $.Toast({
                             icon : '<i class="fa fa-check-circle fa-fw"></i>',
-                            message:rst.message,
+                            message:"操作成功",
                             type : 0
                         });
                         _toas.success();
+
+                        setTimeout(function () {
+                            window.location.reload();
+                        } , 2000);
                     }else{
                         _toas =new $.Toast({
                             icon : '<i class="fa fa-times-circle fa-fw"></i>',

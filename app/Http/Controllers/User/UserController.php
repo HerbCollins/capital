@@ -20,7 +20,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use App\Http\Requests\PaymentRequest;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+use Validator;
 
 class UserController extends Controller
 {
@@ -153,21 +155,58 @@ class UserController extends Controller
     public function ajaxreset(Request $request)
     {
         try{
+            $data = $request->all();
+            $rules = [
+                'old_pwd'=>'required|between:6,20',
+                'password'=>'required|between:6,20|confirmed',
+            ];
+            $messages = [
+                'required' => '密码不能为空',
+                'between' => '密码必须是6~20位之间',
+                'confirmed' => '新密码和确认密码不匹配'
+            ];
+            $validator = Validator::make($data, $rules, $messages);
 
-            if($request['pwd'] != $request['rp_pwd']){
-                throw new \Exception('两次密码不一致',10002);
+            $oldpassword = $data['old_pwd'];
+            $password = $data['password'];
+            Log::info("[UserController@ajaxreset] new password :" .$password);
+
+            $user = Auth::user();
+
+
+            if (!Hash::check($oldpassword, $user->password)) { //原始密码和数据库里的密码进行比对
+                throw new \Exception('原密码错误' , 10002);
             }
 
-            $id  = Auth::id();
-            $user = User::find($id);
-            $user->password = bcrypt($request['pwd']);
-            $user->save();
+            Log::info("[UserController@ajaxreset] validat over");
+            if ($validator->fails()) {      //判断是否有错误
+                $errors = $validator->getMessageBag()->toArray();
+                return response()->json(array(
+                    'code' => 10003,
+                    'message' => $errors['password']
+                ));
+            }
 
-            return response()->json([
-                'code' => 0,
-                'message' => $request['pwd']
-            ]);
+            $make = Hash::make($password);
+            if (!Hash::check($password, $make)) { //原始密码和数据库里的密码进行比对
+                throw new \Exception('验证失败' , 10002);
+            }
+            $response = $user->save();
+
+            if($response){
+                return response()->json([
+                    'code' => 0,
+                    'message' => '密码修改成功'
+                ]);
+            }else{
+                return response()->json([
+                    'code' => 10004,
+                    'message' => '密码修改失败'
+                ]);
+            }
+
         }catch (\Exception $e){
+            Log::error("[UserController@ajaxreset] error :" .json_encode($e));
             return response()->json([
                 'code' => $e->getCode(),
                 'message' => $e->getMessage()
@@ -181,7 +220,7 @@ class UserController extends Controller
         return view('users.payment' , compact('coin_name'));
     }
 
-    public function ajaxpayment(PaymentRequest $request)
+    public function ajaxpayment(Request $request)
     {
         try{
             $all = $request->except('_token');

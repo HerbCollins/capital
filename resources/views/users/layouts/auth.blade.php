@@ -77,6 +77,7 @@
 <script src="{{ asset('asset_admin/assets/js/apps.min.js')}}"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
+@yield('js')
 <script>
     $(document).ready(function() {
         App.init();

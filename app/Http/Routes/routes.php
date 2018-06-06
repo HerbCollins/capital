@@ -23,6 +23,10 @@
 |
  */
 
+Route::group(['prefix' => 'api' ,'middleware' => ['web'] , 'namespace' => 'Api'] , function ($router){
+    $router->post("send" , 'SMSController@send');
+});
+
 Route::group(['middleware' => ['web']], function () {
     Route::get('/' , 'HomeController@index');
 

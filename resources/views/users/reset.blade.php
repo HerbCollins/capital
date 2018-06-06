@@ -16,15 +16,21 @@
         <div class="panel">
             <div class="panel-body">
                 <div class="form-group">
+                    <label for="" class="col-xs-3">原密码</label>
+                    <div class="col-xs-9">
+                        <input type="password" class="form-control text-right" name="old_pwd" placeholder="原密码"/>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="" class="col-xs-3">新密码</label>
                     <div class="col-xs-9">
-                        <input type="password" class="form-control" name="pwd" placeholder="新密码"/>
+                        <input type="password" class="form-control text-right" name="password" placeholder="新密码"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="" class="col-xs-3">确认密码</label>
                     <div class="col-xs-9">
-                        <input type="password" class="form-control" name="rp_pwd" placeholder="确认密码"/>
+                        <input type="password" class="form-control text-right" name="password_confirmation" placeholder="确认密码"/>
                     </div>
                 </div>
             </div>
@@ -69,6 +75,7 @@
                             type : 1
                         });
                         _toas.error();
+                        console.log(rst)
                     }
 
                 },
